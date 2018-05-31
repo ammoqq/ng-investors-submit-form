@@ -1,0 +1,95 @@
+<div class="panel panel-primary">
+  <div class="panel-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">First name</label>
+        <input type="text" class="form-control" formControlName="firstName" #firstName />
+      </div>
+      <div *ngIf="angForm.controls['firstName'].invalid && (angForm.controls['firstName'].dirty || angForm.controls['firstName'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['firstName'].errors.required">
+          First name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Last name</label>
+        <input type="text" class="form-control" formControlName="lastName" #lastName/>
+      </div>
+      <div *ngIf="angForm.controls['lastName'].invalid && (angForm.controls['lastName'].dirty || angForm.controls['lastName'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['lastName'].errors.required">
+          Last name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Address line 1</label>
+        <input type="text" class="form-control" formControlName="address1" placeholder="Street, P.O. box, company name" #address1 />
+      </div>
+      <div *ngIf="angForm.controls['address1'].invalid && (angForm.controls['address1'].dirty || angForm.controls['address1'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['address1'].errors.required">
+          Address is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Address line 2</label>
+        <input type="text" class="form-control" formControlName="address2" placeholder="Apartment, suite, unit, building, floor etc." #address2 />
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Zip code</label>
+        <input type="text" class="form-control" formControlName="zipCode" #zipCode />
+      </div>
+      <div *ngIf="angForm.controls['zipCode'].invalid && (angForm.controls['zipCode'].dirty || angForm.controls['zipCode'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['zipCode'].errors.required">
+          Zip code is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">City</label>
+        <input type="text" class="form-control" formControlName="city" #city />
+      </div>
+      <div *ngIf="angForm.controls['city'].invalid && (angForm.controls['city'].dirty || angForm.controls['city'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['city'].errors.required">
+          City is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">State/Province/Region</label>
+        <input type="text" class="form-control" formControlName="state" #state />
+      </div>
+      <div *ngIf="angForm.controls['state'].invalid && (angForm.controls['state'].dirty || angForm.controls['state'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['state'].errors.required">
+          State/Province is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Country</label>
+        <select formControlName="country">
+          <option *ngFor="let country of countries" [ngValue]="country">{{country}}</option>
+        </select>
+      </div>
+      <div *ngIf="angForm.controls['country'].invalid && (angForm.controls['country'].dirty || angForm.controls['country'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['country'].errors.required">
+          Country is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">ID/Passport photo side 1</label>
+        <div>
+          <input type="file" (change)="onFile1Changed($event)">
+          <progress max="100" [value]="(uploadProgress1 | async)"></progress>
+        </div>
+        <p *ngIf="progressCompleted1">File uploaded successfully</p>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">ID/Passport photo side 2</label>
+        <div>
+          <input type="file" (change)="onFile2Changed($event)">
+          <progress max="100" [value]="(uploadProgress2 | async)"></progress>
+        </div>
+        <p *ngIf="progressCompleted2">File uploaded successfully</p>
+      </div>
+        <div class="form-group">
+          <button (click)="submitInvestorToVerify()" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+  </div>
+</div>
