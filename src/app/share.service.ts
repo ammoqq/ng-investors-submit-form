@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs';
+import * as firebase from 'firebase/app';
 
 @Injectable()
 export class ShareService {
@@ -9,9 +10,11 @@ export class ShareService {
   constructor(private db: AngularFireDatabase) { }
 
   submitInvestorToVerify(data) {
-  const obj = this.db.database.ref(this.basePath);
-  obj.push(data);
-  console.log('Success');
+    const user = firebase.auth().currentUser;
+
+    const obj = this.db.database.ref(this.basePath + '/' + user.uid);
+    obj.push(data);
+    console.log('Success');
   }
 
   getShares(path): Observable<any[]> {
