@@ -8,15 +8,16 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import {AngularFireAuth, AngularFireAuthModule} from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
-import { UserComponent } from './user/user.component';
+import { StatusComponent } from './status/status.component';
 import { RegisterComponent } from './register/register.component';
-import { UserResolver } from './user/user.resolver';
+import { StatusResolver } from './status/status.resolver';
 import { AuthGuard } from './core/auth.guard';
 import { AuthService } from './core/auth.service';
 import { UserService } from './core/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 // import { AngularFireStorage } from 'angularfire2/storage';
+import { MatToolbarModule, MatButtonModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
@@ -27,12 +28,14 @@ import { ShareService } from './share.service';
   declarations: [
     AppComponent,
     LoginComponent,
-    UserComponent,
+    StatusComponent,
     RegisterComponent,
     IndexComponent,
     CreateComponent
   ],
   imports: [
+    MatToolbarModule,
+    MatButtonModule,
     BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false, enableTracing: true }),
@@ -42,7 +45,7 @@ import { ShareService } from './share.service';
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [AuthService, UserService, UserResolver, AuthGuard, ShareService],
+  providers: [AuthService, UserService, StatusResolver, AuthGuard, ShareService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

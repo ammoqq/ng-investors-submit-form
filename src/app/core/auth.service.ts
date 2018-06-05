@@ -53,13 +53,37 @@ export class AuthService {
     })
   }
 
-  doRegister(value){
+  doRegister(value) {
     return new Promise<any>((resolve, reject) => {
-      firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
-      .then(res => {
-        resolve(res);
-      }, err => reject(err))
-    })
+      firebase.auth().createUserWithEmailAndPassword(value.email, value.password).then(function(user){
+        if(user && user.emailVerified !== true){
+          user.sendEmailVerification().then(function(){
+            resolve(user);
+            console.log("email verification sent to user");
+          });
+        }
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        reject(error);
+        console.log(errorCode, errorMessage);
+      });
+
+
+
+
+    //     .then(function(user) {
+    //       console.log('111');
+    //       console.log(user);
+    //       console.log(user.emailVerified);
+    //       if (user && user.emailVerified !== true) {
+    //         console.log('222');
+    //         user.sendEmailVerification();
+    //       }
+    //       resolve(user);
+    //     }, err => reject(err));
+     });
   }
 
   doLogin(value){

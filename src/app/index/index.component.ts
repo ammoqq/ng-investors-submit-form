@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ShareService } from '../share.service';
+import {AuthService} from '../core/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -9,15 +11,19 @@ import { ShareService } from '../share.service';
 })
 export class IndexComponent implements OnInit {
 
-  public shares: Observable<any[]>;
-  constructor(private shareservice: ShareService) { }
+  constructor(private router: Router, public authService: AuthService) {
 
+  }
+
+  logout() {
+    this.authService.doLogout()
+      .then((res) => {
+        this.router.navigate(['/login']);
+      }, (error) => {
+        console.log("Logout error", error);
+      });
+  }
   ngOnInit() {
-    this.shares = this.getShares('/investors');
   }
-  getShares(path) {
-    return this.shareservice.getShares(path);
-  }
-
 
 }

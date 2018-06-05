@@ -7,7 +7,14 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
 import {Observable} from 'rxjs';
 import {filter, map, tap} from 'rxjs/operators';
+import * as firebase from 'firebase';
+import {Router} from '@angular/router';
+import {AuthService} from '../core/auth.service';
 
+
+// @NgModule({
+//     imports: [MatToolbarModule]
+// })
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -25,7 +32,7 @@ export class CreateComponent implements OnInit {
   uploadProgress2: Observable<number>;
 
 
-  constructor(private shareservice: ShareService, private fb: FormBuilder, private database: AngularFirestore, private storage: AngularFireStorage) {
+  constructor(private shareservice: ShareService, private fb: FormBuilder, private database: AngularFirestore, private storage: AngularFireStorage, private router: Router, public authService: AuthService,) {
 
     this.createForm();
    }

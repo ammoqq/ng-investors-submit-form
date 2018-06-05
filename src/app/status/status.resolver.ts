@@ -4,7 +4,7 @@ import { UserService } from '../core/user.service';
 import { FirebaseUserModel } from '../core/user.model';
 
 @Injectable()
-export class UserResolver implements Resolve<FirebaseUserModel> {
+export class StatusResolver implements Resolve<FirebaseUserModel> {
 
   constructor(public userService: UserService, private router: Router) { }
 

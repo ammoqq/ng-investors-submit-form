@@ -1,10 +1,12 @@
-<table class="table table-striped">
-  <tr>
-    <th>Share Name</th>
-    <th>Share Price</th>
-  </tr>
-  <tr *ngFor="let share of shares | async">
-    <td>{{ share.name }}</td>
-    <td>{{ share.price }}</td>
-  </tr>
-</table>
+<mat-toolbar color="primary">
+  <span>
+  <button mat-button routerLink="/status">Status</button>
+  <button mat-button routerLink="/create" routerLinkActive="active">Verification Form</button>
+    <!-- This fills the remaining space of the current row -->
+  </span>
+  <span class="example-spacer"></span>
+  <button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

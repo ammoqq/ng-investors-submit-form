@@ -20,7 +20,7 @@ export class UserService {
         if (user) {
           resolve(user);
         } else {
-          reject('No user logged in');
+          reject('No status logged in');
         }
       });
     });

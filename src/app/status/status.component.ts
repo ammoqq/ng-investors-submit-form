@@ -8,10 +8,10 @@ import { FirebaseUserModel } from '../core/user.model';
 
 @Component({
   selector: 'page-user',
-  templateUrl: 'user.component.html',
-  styleUrls: ['user.scss']
+  templateUrl: 'status.component.html',
+  styleUrls: ['status.scss']
 })
-export class UserComponent implements OnInit{
+export class StatusComponent implements OnInit{
 
   user: FirebaseUserModel = new FirebaseUserModel();
   profileForm: FormGroup;
