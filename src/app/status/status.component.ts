@@ -5,6 +5,18 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseUserModel } from '../core/user.model';
+import {FirebaseListObservable} from 'angularfire2/database-deprecated';
+import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
+import {AngularFireAuth} from 'angularfire2/auth';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {isFirebaseQuery} from 'angularfire2/database-deprecated/utils';
+import * as firebase from 'firebase';
+
+export class Submission {
+  body: string;
+}
+
 
 @Component({
   selector: 'page-user',
@@ -21,9 +33,33 @@ export class StatusComponent implements OnInit{
     public authService: AuthService,
     private route: ActivatedRoute,
     private location : Location,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private db: AngularFireDatabase,
+    private afAuth: AngularFireAuth
   ) {
 
+  }
+
+
+  // items: Observable<Submission[]>;
+  userId: string;
+  kycStatusLabel: string
+  pendingText = "We are currently reviewing your latest kyc submission"
+  noSubmissionText = "You haven't submitted any kyc form yet"
+
+  onSubmissionChange() {
+
+    if (!firebase.auth().currentUser.uid) {
+      return;
+    }
+
+   this.db.list<Submission>(`investors/${firebase.auth().currentUser.uid}`)
+      .valueChanges()
+      .pipe(map( submissions => submissions.length ))
+      .subscribe(length => {
+        console.log('xxxxx');
+      this.kycStatusLabel = length > 0 ? this.pendingText : this.noSubmissionText;
+    });
   }
 
   ngOnInit(): void {
@@ -32,6 +68,7 @@ export class StatusComponent implements OnInit{
       if (data) {
         this.user = data;
         this.createForm(this.user.name);
+        this.onSubmissionChange();
       }
     })
   }

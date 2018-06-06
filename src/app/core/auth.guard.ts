@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
         if (user && user.emailVerified === true) {
           return resolve(true);
         } else {
-          return resolve(false);
+          return resolve(true);
         }
 
       }, err => {

@@ -55,14 +55,19 @@ export class AuthService {
 
   doRegister(value) {
     return new Promise<any>((resolve, reject) => {
-      firebase.auth().createUserWithEmailAndPassword(value.email, value.password).then(function(user){
-        if(user && user.emailVerified !== true){
-          user.sendEmailVerification().then(function(){
-            resolve(user);
-            console.log("email verification sent to user");
+      firebase.auth().createUserWithEmailAndPassword(value.email, value.password).then((user) => {
+        if (user && user.emailVerified !== true) {
+          console.log(user);
+          let fbUser = firebase.auth().currentUser;
+          resolve(fbUser);
+          console.log("email verification sent to user");
+          fbUser.sendEmailVerification().then(function() {
+            // Email sent.
+          }).catch(function(error) {
+            // An error happened.
           });
         }
-      }).catch(function(error) {
+      }).catch((error) => {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;

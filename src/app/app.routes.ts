@@ -12,7 +12,13 @@ export const rootRouterConfig: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'status', component: StatusComponent,  resolve: { data: StatusResolver}},
-  { path: 'create', component: CreateComponent, canActivate: [AuthGuard]  },
-  { path: 'index', component: IndexComponent, canActivate: [AuthGuard] }
+  { path: 'index',
+    component: IndexComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', redirectTo: 'status', pathMatch: 'full'},
+      { path: 'status', component: StatusComponent, canActivate: [AuthGuard],  resolve: { data: StatusResolver} },
+      { path: 'create', component: CreateComponent, canActivate: [AuthGuard]  },
+    ]
+  }
 ];

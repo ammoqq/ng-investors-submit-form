@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { AuthService } from '../core/auth.service'
 import { Router, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -10,7 +10,7 @@ import {Unsubscribe} from 'firebase';
   templateUrl: 'login.component.html',
   styleUrls: ['login.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   errorMessage: string = '';
@@ -21,18 +21,22 @@ export class LoginComponent {
     private fb: FormBuilder
   ) {
     this.createForm();
-    const unsubscribe: Unsubscribe = firebase
+  }
+
+  ngOnInit(): void {
+    firebase
       .auth()
       .onAuthStateChanged(user => {
-        if (user && user.emailVerified === true) {
+        console.log("ccc")
+        if (user && user.emailVerified) {
           this.router.navigate(['/index']);
-          unsubscribe();
+
         } else {
-          unsubscribe();
+          console.log("ccc1")
+          console.log(user)
+
         }
-
-
-   });
+      });
   }
 
   createForm() {
@@ -67,10 +71,10 @@ export class LoginComponent {
     this.authService.doLogin(value)
     .then(res => {
 
-
+      console.log(res);
     }, err => {
       console.log(err);
       this.errorMessage = err.message;
-    })
+    });
   }
 }
