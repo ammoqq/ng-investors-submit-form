@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { UserService } from '../core/user.service';
 import { AuthService } from '../core/auth.service';
 import { ActivatedRoute } from '@angular/router';
@@ -23,10 +23,11 @@ export class Submission {
   templateUrl: 'status.component.html',
   styleUrls: ['status.scss']
 })
-export class StatusComponent implements OnInit{
+export class StatusComponent implements OnInit, OnDestroy {
 
   user: FirebaseUserModel = new FirebaseUserModel();
   profileForm: FormGroup;
+  kycStatus$;
 
   constructor(
     public userService: UserService,
@@ -53,7 +54,7 @@ export class StatusComponent implements OnInit{
       return;
     }
 
-   this.db.list<Submission>(`investors/${firebase.auth().currentUser.uid}`)
+    this.kycStatus$ = this.db.list<Submission>(`investors/${firebase.auth().currentUser.uid}`)
       .valueChanges()
       .pipe(map( submissions => submissions.length ))
       .subscribe(length => {
@@ -70,7 +71,11 @@ export class StatusComponent implements OnInit{
         this.createForm(this.user.name);
         this.onSubmissionChange();
       }
-    })
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.kycStatus$.unsubscribe();
   }
 
   createForm(name) {
