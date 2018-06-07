@@ -91,9 +91,9 @@ export class AuthService {
      });
   }
 
-  doLogin(value){
+  doLogin(credentials){
     return new Promise<any>((resolve, reject) => {
-      firebase.auth().signInWithEmailAndPassword(value.email, value.password)
+      firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(res => {
         resolve(res);
       }, err => reject(err))

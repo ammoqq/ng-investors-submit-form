@@ -74,7 +74,10 @@ export class CreateComponent implements OnInit {
   }
 
   submitInvestorToVerify() {
-    const body = Object.assign({}, this.angForm.value, { documentFrontId: this.documentFrontId, documentBackId: this.documentBackId });
+    let now = new Date();
+    let dateUTC = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),
+      now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
+    const body = Object.assign({}, this.angForm.value, { createdAt: dateUTC, documentFrontId: this.documentFrontId, documentBackId: this.documentBackId });
     this.shareservice.submitInvestorToVerify(body);
   }
   ngOnInit() {

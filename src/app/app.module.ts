@@ -16,13 +16,23 @@ import { AuthService } from './core/auth.service';
 import { UserService } from './core/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import {MatInputModule} from '@angular/material/input';
 // import { AngularFireStorage } from 'angularfire2/storage';
-import { MatToolbarModule, MatButtonModule } from '@angular/material';
+import {
+  MatToolbarModule,
+  MatButtonModule,
+  MatFormFieldModule,
+  MatSnackBarModule,
+  MatSelectModule,
+  MatIconModule,
+  MatProgressBarModule
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
 import { CreateComponent } from './create/create.component';
 import { ShareService } from './share.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,9 +44,16 @@ import { ShareService } from './share.service';
     CreateComponent
   ],
   imports: [
+    MatProgressBarModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    MatSnackBarModule,
     MatToolbarModule,
     MatButtonModule,
     BrowserModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false, enableTracing: true }),
     AngularFireDatabaseModule,

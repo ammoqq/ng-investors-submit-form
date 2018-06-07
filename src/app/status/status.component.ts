@@ -44,7 +44,7 @@ export class StatusComponent implements OnInit, OnDestroy {
 
   // items: Observable<Submission[]>;
   userId: string;
-  kycStatusLabel: string
+  kycStatusLabel = "Loading kyc status..."
   pendingText = "We are currently reviewing your latest kyc submission"
   noSubmissionText = "You haven't submitted any kyc form yet"
 

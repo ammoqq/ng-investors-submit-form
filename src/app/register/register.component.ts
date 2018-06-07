@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterComponent {
 
+  hide = true;
   registerForm: FormGroup;
   errorMessage: string = '';
   successMessage: string = '';
