@@ -45,8 +45,8 @@ export class StatusComponent implements OnInit, OnDestroy {
   // items: Observable<Submission[]>;
   userId: string;
   kycStatusLabel = "Loading kyc status..."
-  pendingText = "We are currently reviewing your latest kyc submission"
-  noSubmissionText = "You haven't submitted any kyc form yet"
+  pendingText = "Thank you, we are currently reviewing your latest kyc submission"
+  noSubmissionText = "You haven't submitted any kyc form yet, you can do that via the Verification Form tab"
 
   onSubmissionChange() {
 
@@ -58,7 +58,6 @@ export class StatusComponent implements OnInit, OnDestroy {
       .valueChanges()
       .pipe(map( submissions => submissions.length ))
       .subscribe(length => {
-        console.log('xxxxx');
       this.kycStatusLabel = length > 0 ? this.pendingText : this.noSubmissionText;
     });
   }

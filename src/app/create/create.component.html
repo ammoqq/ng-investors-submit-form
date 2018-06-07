@@ -79,7 +79,9 @@
           <!--<input #file type="file" [hidden]="true" accept="image/*" (change)="upload(file.files)">-->
 
           <input type="file" [hidden]="true" (change)="onFile1Changed($event)" #file1>
-          <button mat-raised-button color="primary" #upload (click)="file1.click()">Choose file</button>
+          <button mat-raised-button color="primary" #upload (click)="file1.click()">
+            Choose file
+          </button>
           <mat-progress-bar mode="determinate" [value]="(uploadProgress1 | async)"></mat-progress-bar>
           <!--<progress max="100" [value]="(uploadProgress1 | async)"></progress>-->
         </div>
