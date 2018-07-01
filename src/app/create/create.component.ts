@@ -38,6 +38,7 @@ export class CreateComponent implements OnInit {
    }
   createForm() {
     this.angForm = this.fb.group({
+      ethAddress: ['', Validators.required],  //Validators.pattern('/^(0x){1}[0-9a-fA-F]{40}$/i')],
       firstName: ['', Validators.required ],
       lastName: ['', Validators.required ],
       address1: ['', Validators.required ],
@@ -50,8 +51,9 @@ export class CreateComponent implements OnInit {
   }
 
   onFile1Changed(event) {
+    const user = firebase.auth().currentUser;
     this.documentFrontId = Math.random().toString(36).substring(2);
-    const ref = this.storage.ref(this.documentFrontId);
+    const ref = this.storage.ref('formPhotos/' + user.uid + '/' + this.documentFrontId);
     const task = ref.put(event.target.files[0]);
     this.uploadProgress1 = task.snapshotChanges()
       .pipe(
@@ -62,8 +64,9 @@ export class CreateComponent implements OnInit {
   }
 
   onFile2Changed(event) {
+    const user = firebase.auth().currentUser;
     this.documentBackId = Math.random().toString(36).substring(2);
-    const ref = this.storage.ref(this.documentBackId);
+    const ref = this.storage.ref('formPhotos/' + user.uid + '/' + this.documentBackId);
     const task = ref.put(event.target.files[0]);
     this.uploadProgress2 = task.snapshotChanges()
       .pipe(
