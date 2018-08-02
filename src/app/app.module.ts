@@ -26,6 +26,8 @@ import {
   MatSnackBarModule,
   MatSelectModule,
   MatIconModule,
+  MatGridListModule,
+  MatStepperModule,
   MatProgressBarModule
 } from '@angular/material';
 
@@ -53,6 +55,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatInputModule,
     MatSnackBarModule,
     MatToolbarModule,
+    MatGridListModule,
+    MatStepperModule,
     MatButtonModule,
     BrowserModule,
     BrowserAnimationsModule,
