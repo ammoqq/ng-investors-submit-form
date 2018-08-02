@@ -20,6 +20,7 @@ import {MatInputModule} from '@angular/material/input';
 // import { AngularFireStorage } from 'angularfire2/storage';
 import {
   MatToolbarModule,
+  MatCardModule,
   MatButtonModule,
   MatFormFieldModule,
   MatSnackBarModule,
@@ -46,6 +47,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   imports: [
     MatProgressBarModule,
     MatIconModule,
+    MatCardModule,
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
