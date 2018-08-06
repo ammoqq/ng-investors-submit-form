@@ -18,7 +18,7 @@ import {AuthService} from '../core/auth.service';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
 

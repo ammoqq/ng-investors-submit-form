@@ -1,196 +1,139 @@
-<div class="panel panel-primary">
-  <div class="panel-body">
+<div class="container">
+  <div class="row">
+    <form [formGroup]="angForm" class="col-6" novalidate>
+      <mat-vertical-stepper>
+        <mat-step label="Personal data">
+          <mat-grid-list cols="2" rowHeight="80px">
+            <mat-grid-tile>
+              <div class="form-group">
+                <mat-form-field>
+                  <input matInput placeholder="First Name" formControlName="firstName" required>
+                  <mat-error>
+                    First name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <div class="form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Last Name" formControlName="lastName" required>
+                  <mat-error>
+                    Last name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <div class="form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Address line 1" formControlName="address1" required>
+                  <mat-hint>
+                    Street, P.O. box, company name
+                  </mat-hint>
+                  <mat-error>
+                    Address is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <div class="form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Address line 2" formControlName="address2">
+                  <mat-hint>
+                    Apartment, suite, unit, building, floor etc.
+                  </mat-hint>
+                </mat-form-field>
+              </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <div class="form-group">
+                <mat-form-field>
+                  <input matInput placeholder="Zip code" formControlName="zipCode" required>
+                  <mat-error>
+                    Zip code is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <div class="form-group">
+                <mat-form-field>
+                  <input matInput placeholder="City" formControlName="city" required>
+                  <mat-error>
+                    City is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <div class="form-group">
+                <mat-form-field>
+                  <input matInput placeholder="State/Province/Region" formControlName="state" required>
+                  <mat-error>
+                    State/Province/Region is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <div class="form-group">
+                <mat-form-field>
+                  <mat-select placeholder="Country" formControlName="country" required>
+                    <mat-option *ngFor="let country of countries" [value]="country">
+                      {{ country }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </mat-step>
+        <mat-step label="Etherum wallet data">
+          <div class="form-group">
+            <mat-form-field>
+              <input matInput placeholder="Ethereum public address" formControlName="ethAddress" required>
+              <mat-error>
+                Ethereum address is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </mat-step>
+        <mat-step label="ID/Passport images">
+          <div class="form-group">
+            <div class="row mt-2">
+              <label class="mat-body-1 col-8">ID/Passport photo side 1</label>
+              <input type="file" [hidden]="true" (change)="onFile1Changed($event)" #file1>
+              <button mat-raised-button color="primary" class="col-4" #upload (click)="file1.click()">
+                Choose file
+              </button>
 
+              <mat-progress-bar class="progress-bar mb-1" mode="determinate" [value]="(uploadProgress1 | async)"></mat-progress-bar>
+              <p class="ml-2" *ngIf="progressCompleted1">File uploaded successfully</p>
 
-    <form [formGroup]="angForm" novalidate>
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput placeholder="Ethereum public address" formControlName="ethAddress" required>
-          <!--<mat-error class="error-message" *ngIf="angForm.get('ethAddress').hasError('pattern') && (angForm.get('ethAddress').dirty || angForm.get('ethAddress').touched)">Ethereum address is required</mat-error>-->
-          <mat-error>
-            Ethereum address is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput placeholder="First Name" formControlName="firstName" required>
-          <mat-error>
-            First name is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput placeholder="Last Name" formControlName="lastName" required>
-          <mat-error>
-            Last name is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput placeholder="Address line 1" formControlName="address1" required>
-          <mat-hint>
-            Street, P.O. box, company name
-          </mat-hint>
-          <mat-error>
-            Address is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput placeholder="Address line 2" formControlName="address2">
-          <mat-hint>
-            Apartment, suite, unit, building, floor etc.
-          </mat-hint>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput placeholder="Zip code" formControlName="zipCode" required>
-          <mat-error>
-            Zip code is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput placeholder="City" formControlName="city" required>
-          <mat-error>
-            City is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput placeholder="State/Province/Region" formControlName="state" required>
-          <mat-error>
-            State/Province/Region is required
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field>
-          <mat-select placeholder="Country" formControlName="country" required>
-            <mat-option *ngFor="let country of countries" [value]="country">
-              {{ country }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <label class="mat-body-1">ID/Passport photo side 1</label>
-
-        <div>
-
-          <!--<input #file type="file" [hidden]="true" accept="image/*" (change)="upload(file.files)">-->
-
-          <input type="file" [hidden]="true" (change)="onFile1Changed($event)" #file1>
-          <button mat-raised-button color="primary" #upload (click)="file1.click()">
-            Choose file
-          </button>
-          <mat-progress-bar mode="determinate" [value]="(uploadProgress1 | async)"></mat-progress-bar>
-          <!--<progress max="100" [value]="(uploadProgress1 | async)"></progress>-->
-        </div>
-        <p *ngIf="progressCompleted1">File uploaded successfully</p>
-      </div>
-
-      <!---->
-
-
-      <!---->
-
-      <!--<div class="form-group">-->
-        <!--<label class="col-md-4">First name</label>-->
-        <!--<input type="text" class="form-control" formControlName="firstName" #firstName />-->
-      <!--</div>-->
-      <!--<div *ngIf="angForm.controls['firstName'].invalid && (angForm.controls['firstName'].dirty || angForm.controls['firstName'].touched)" class="alert alert-danger">-->
-        <!--<div *ngIf="angForm.controls['firstName'].errors.required">-->
-          <!--First name is required.-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label class="col-md-4">Last name</label>-->
-        <!--<input type="text" class="form-control" formControlName="lastName" #lastName/>-->
-      <!--</div>-->
-      <!--<div *ngIf="angForm.controls['lastName'].invalid && (angForm.controls['lastName'].dirty || angForm.controls['lastName'].touched)" class="alert alert-danger">-->
-        <!--<div *ngIf="angForm.controls['lastName'].errors.required">-->
-          <!--Last name is required.-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label class="col-md-4">Address line 1</label>-->
-        <!--<input type="text" class="form-control" formControlName="address1" placeholder="Street, P.O. box, company name" #address1 />-->
-      <!--</div>-->
-      <!--<div *ngIf="angForm.controls['address1'].invalid && (angForm.controls['address1'].dirty || angForm.controls['address1'].touched)" class="alert alert-danger">-->
-        <!--<div *ngIf="angForm.controls['address1'].errors.required">-->
-          <!--Address is required.-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label class="col-md-4">Address line 2</label>-->
-        <!--<input type="text" class="form-control" formControlName="address2" placeholder="Apartment, suite, unit, building, floor etc." #address2 />-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label class="col-md-4">Zip code</label>-->
-        <!--<input type="text" class="form-control" formControlName="zipCode" #zipCode />-->
-      <!--</div>-->
-      <!--<div *ngIf="angForm.controls['zipCode'].invalid && (angForm.controls['zipCode'].dirty || angForm.controls['zipCode'].touched)" class="alert alert-danger">-->
-        <!--<div *ngIf="angForm.controls['zipCode'].errors.required">-->
-          <!--Zip code is required.-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label class="col-md-4">City</label>-->
-        <!--<input type="text" class="form-control" formControlName="city" #city />-->
-      <!--</div>-->
-      <!--<div *ngIf="angForm.controls['city'].invalid && (angForm.controls['city'].dirty || angForm.controls['city'].touched)" class="alert alert-danger">-->
-        <!--<div *ngIf="angForm.controls['city'].errors.required">-->
-          <!--City is required.-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label class="col-md-4">State/Province/Region</label>-->
-        <!--<input type="text" class="form-control" formControlName="state" #state />-->
-      <!--</div>-->
-      <!--<div *ngIf="angForm.controls['state'].invalid && (angForm.controls['state'].dirty || angForm.controls['state'].touched)" class="alert alert-danger">-->
-        <!--<div *ngIf="angForm.controls['state'].errors.required">-->
-          <!--State/Province is required.-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label class="col-md-4">Country</label>-->
-        <!--<select formControlName="country">-->
-          <!--<option *ngFor="let country of countries" [ngValue]="country">{{country}}</option>-->
-        <!--</select>-->
-      <!--</div>-->
-      <!--<div *ngIf="angForm.controls['country'].invalid && (angForm.controls['country'].dirty || angForm.controls['country'].touched)" class="alert alert-danger">-->
-        <!--<div *ngIf="angForm.controls['country'].errors.required">-->
-          <!--Country is required.-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="form-group">-->
-        <!--<label class="col-md-4">ID/Passport photo side 1</label>-->
-        <!--<div>-->
-          <!--<input type="file" (change)="onFile1Changed($event)">-->
-          <!--<progress max="100" [value]="(uploadProgress1 | async)"></progress>-->
-        <!--</div>-->
-        <!--<p *ngIf="progressCompleted1">File uploaded successfully</p>-->
-      <!--</div>-->
-
-      <div class="form-group">
-        <label class="mat-body-1">ID/Passport photo side 2</label>
-        <div>
-          <input type="file" (change)="onFile2Changed($event)">
-          <progress max="100" [value]="(uploadProgress2 | async)"></progress>
-        </div>
-        <p *ngIf="progressCompleted2">File uploaded successfully</p>
-      </div>
-        <div class="form-group">
-          <button mat-raised-button color="primary" (click)="submitInvestorToVerify()" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Submit</button>
-        </div>
+            </div>
+          </div>
+          <div class="form-group">  
+            <div class="row mt-3">
+              <label class="mat-body-1 col-8">ID/Passport photo side 2</label>
+              <input type="file" [hidden]="true" (change)="onFile2Changed($event)" #file2>
+              <button mat-raised-button color="primary" class="col-4" #upload (click)="file2.click()">
+                Choose file
+              </button>
+              <mat-progress-bar mode="determinate" class="progress-bar mb-1" [value]="(uploadProgress2 | async)"></mat-progress-bar>
+            </div>
+            <p class="ml-2" *ngIf="progressCompleted2">File uploaded successfully</p>
+          </div>
+        </mat-step>
+        <mat-step label="Submit">
+          <div class="form-group">
+            <button mat-raised-button color="primary"  (click)="submitInvestorToVerify()" [disabled]="angForm.pristine || angForm.invalid" class="primary col-2">Submit</button>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
     </form>
+
   </div>
 </div>
+
