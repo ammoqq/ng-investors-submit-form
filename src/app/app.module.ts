@@ -28,7 +28,8 @@ import {
   MatIconModule,
   MatGridListModule,
   MatStepperModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatDialogModule,
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -36,6 +37,7 @@ import { IndexComponent } from './index/index.component';
 import { CreateComponent } from './create/create.component';
 import { ShareService } from './share.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AccountDetailsComponent } from './account-details/account-details.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     StatusComponent,
     RegisterComponent,
     IndexComponent,
-    CreateComponent
+    AccountDetailsComponent,
+    CreateComponent,
+    AccountDetailsComponent
   ],
   imports: [
     MatProgressBarModule,
@@ -54,6 +58,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatSelectModule,
     MatInputModule,
     MatSnackBarModule,
+    MatDialogModule,
     MatToolbarModule,
     MatGridListModule,
     MatStepperModule,
