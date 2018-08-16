@@ -8,6 +8,7 @@ import { AuthGuard } from './core/auth.guard';
 import { CreateComponent } from './create/create.component';
 import { IndexComponent } from './index/index.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
+import {UserPaymentComponent} from './user-payment/user-payment.component';
 
 export const rootRouterConfig: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -17,7 +18,8 @@ export const rootRouterConfig: Routes = [
     component: IndexComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'status', pathMatch: 'full'},
+      { path: '', redirectTo: 'userPayment', pathMatch: 'full'},
+      { path: 'userPayment', component: UserPaymentComponent, canActivate: [AuthGuard]  },
       { path: 'status', component: StatusComponent, canActivate: [AuthGuard],  resolve: { data: StatusResolver} },
       { path: 'create', component: CreateComponent, canActivate: [AuthGuard]  },
       { path: 'account-details', component: AccountDetailsComponent, canActivate: [AuthGuard], resolve: { data: StatusResolver}}

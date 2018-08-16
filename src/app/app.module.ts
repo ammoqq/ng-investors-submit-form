@@ -1,3 +1,4 @@
+///<reference path="user-payment/user-payment.component.ts"/>
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -25,11 +26,14 @@ import {
   MatFormFieldModule,
   MatSnackBarModule,
   MatSelectModule,
+  MatExpansionModule,
   MatIconModule,
   MatGridListModule,
   MatStepperModule,
   MatProgressBarModule,
   MatDialogModule,
+  MatRadioModule
+
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -38,6 +42,7 @@ import { CreateComponent } from './create/create.component';
 import { ShareService } from './share.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AccountDetailsComponent } from './account-details/account-details.component';
+import {UserPaymentComponent} from './user-payment/user-payment.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +53,7 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
     IndexComponent,
     AccountDetailsComponent,
     CreateComponent,
-    AccountDetailsComponent
+    UserPaymentComponent
   ],
   imports: [
     MatProgressBarModule,
@@ -56,13 +61,16 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
     MatCardModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatRadioModule,
     MatInputModule,
     MatSnackBarModule,
     MatDialogModule,
     MatToolbarModule,
     MatGridListModule,
     MatStepperModule,
+    MatExpansionModule,
     MatButtonModule,
+    MatCardModule,
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
