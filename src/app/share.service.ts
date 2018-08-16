@@ -33,6 +33,27 @@ export class ShareService {
 
   }
 
+
+  submitCoinRequest(data) {
+    const user = firebase.auth().currentUser;
+
+    const obj = this.db.database.ref(/coinRequests/ + user.uid);
+    obj.push(data, (err) => {
+      var message = "Successfully submitted coin request";
+      if (err) {
+        message = err.message;
+      } else {
+
+        console.log('Success');
+      }
+
+      this.matSnackBar.open(message, "", {
+        duration: 2500,
+      });
+    });
+
+  }
+
   getShares(path): Observable<any[]> {
     return this.db.list(path).valueChanges();
   }

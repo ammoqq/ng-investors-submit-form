@@ -14,7 +14,7 @@ import {isFirebaseQuery} from 'angularfire2/database-deprecated/utils';
 import * as firebase from 'firebase';
 
 export class Submission {
-  body: string;
+  address: String;
 }
 
 
@@ -45,7 +45,7 @@ export class StatusComponent implements OnInit, OnDestroy {
   // items: Observable<Submission[]>;
   userId: string;
   kycStatusLabel = "Loading kyc status..."
-  pendingText = "Thank you, we are currently reviewing your latest kyc submission"
+  pendingText = "Your KYC submission has been approved"
   noSubmissionText = "You haven't submitted any kyc form yet, you can do that via the Verification Form tab"
 
   onSubmissionChange() {
@@ -53,12 +53,11 @@ export class StatusComponent implements OnInit, OnDestroy {
     if (!firebase.auth().currentUser.uid) {
       return;
     }
-
-    this.kycStatus$ = this.db.list<Submission>(`investors/${firebase.auth().currentUser.uid}`)
+    this.kycStatus$ = this.db.list<Submission>(`investors/approved/${firebase.auth().currentUser.uid}`)
       .valueChanges()
-      .pipe(map( submissions => submissions.length ))
-      .subscribe(length => {
-      this.kycStatusLabel = length > 0 ? this.pendingText : this.noSubmissionText;
+      .pipe(map( submissions => submissions ))
+      .subscribe(submissions => {
+       this.kycStatusLabel = submissions.length > 0 ? this.pendingText : this.noSubmissionText;
     });
   }
 
