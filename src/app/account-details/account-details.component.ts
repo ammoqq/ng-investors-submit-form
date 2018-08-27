@@ -15,7 +15,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./account-details.component.scss']
 })
 export class AccountDetailsComponent implements OnInit {
-  dialog: any;
   user: FirebaseUserModel ;
   userDetails: any;
   imageBack: string;
@@ -64,8 +63,9 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '250px'
+    const dialogRef = this.matDialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      height: '250px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
