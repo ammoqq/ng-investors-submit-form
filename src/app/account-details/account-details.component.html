@@ -5,7 +5,9 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item">First name:<p class="float-right">{{userDetails.firstName}}</p></li>
           <li class="list-group-item">Last name:<p class="float-right">{{userDetails.lastName}}</p></li>
-          <li class="list-group-item">Email: <p class="float-right">{{user.email}}</p></li>
+          <!--<li class="list-group-item">Email: <p class="float-right">{{user.email}}</p></li>-->
+          <li class="list-group-item">ETH address: <p class="float-right">{{userDetails.ethAddress}}</p></li>
+
         </ul>
     </div>
     <div class="col ">
@@ -17,13 +19,26 @@
     </div>
   </div>
   <div class="row mt-5">
-    <div class="col">
-      <button mat-raised-button (click)="openDialog()">Pick one</button>
-      <img src="{{imageBack}}" class="img-fluid">
-      <img src="{{imageFront}}" class="img-fluid">
+    <div class="col-6">
+      <mat-card>
+        <mat-card-title>
+          Front image
+        </mat-card-title>
+        <mat-card-content>
+          <img src="{{imageFront}}" class="img-fluid">
+        </mat-card-content>
+      </mat-card>
 
     </div>
-
+  <div class="col-6">
+    <mat-card>
+      <mat-card-title>
+        Back image
+      </mat-card-title>
+      <mat-card-content>
+        <img src="{{imageBack}}" class="img-fluid">
+      </mat-card-content>
+    </mat-card>
   </div>
-
+  </div>
 </div>

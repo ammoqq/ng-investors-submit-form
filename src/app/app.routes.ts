@@ -9,6 +9,7 @@ import { CreateComponent } from './create/create.component';
 import { IndexComponent } from './index/index.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import {UserPaymentComponent} from './user-payment/user-payment.component';
+import {AccountDetailsResolver} from './account-details/account-details.resolver';
 
 export const rootRouterConfig: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -22,7 +23,7 @@ export const rootRouterConfig: Routes = [
       { path: 'userPayment', component: UserPaymentComponent, canActivate: [AuthGuard]  },
       { path: 'status', component: StatusComponent, canActivate: [AuthGuard],  resolve: { data: StatusResolver} },
       { path: 'create', component: CreateComponent, canActivate: [AuthGuard]  },
-      { path: 'account-details', component: AccountDetailsComponent, canActivate: [AuthGuard], resolve: { data: StatusResolver}}
+      { path: 'account-details', component: AccountDetailsComponent, canActivate: [AuthGuard], resolve: { data: AccountDetailsResolver}}
     ]
   }
 ];

@@ -43,6 +43,7 @@ import { ShareService } from './share.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import {UserPaymentComponent} from './user-payment/user-payment.component';
+import {AccountDetailsResolver} from './account-details/account-details.resolver';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,7 @@ import {UserPaymentComponent} from './user-payment/user-payment.component';
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [AuthService, UserService, StatusResolver, AuthGuard, ShareService],
+  providers: [AuthService, UserService, StatusResolver, AuthGuard, ShareService, AccountDetailsResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

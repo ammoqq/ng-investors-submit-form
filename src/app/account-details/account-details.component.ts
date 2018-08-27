@@ -30,67 +30,25 @@ export class AccountDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(routeData => {
-      let data = routeData['data'];
+      const data = routeData['data'];
       if (data) {
-        this.user = data;
+        this.userDetails = data;
+        this.onUserFetch();
       }
     });
-    this.userDetails = this.db.list<any>(`investors/${firebase.auth().currentUser.uid}`)
-      .valueChanges()
-      .subscribe( submissions => {
-        submissions.sort((n1,n2) => {
-          if(n1.createdAt > n2.createdAt) return 1;
-          if(n1.createdAt < n2.createdAt) return -1;
-          return 0;
-        });
-        this.userDetails = submissions[submissions.length - 1]
-        this.onUserFetch()
-    })
-
   }
 
   onUserFetch() {
     this.storage.storage.ref(`formPhotos/${firebase.auth().currentUser.uid}/${this.userDetails.documentBackId}`)
     .getDownloadURL()
       .then( res => {
-        this.imageBack = res
-      })
+        this.imageBack = res;
+      });
       this.storage.storage.ref(`formPhotos/${firebase.auth().currentUser.uid}/${this.userDetails.documentFrontId}`)
       .getDownloadURL()
         .then( res => {
-          this.imageFront = res
-        })
+          this.imageFront = res;
+        });
   }
 
-  openDialog(): void {
-    const dialogRef = this.matDialog.open(DialogOverviewExampleDialog, {
-      width: '250px',
-      height: '250px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
-
-}
-
-@Component({
-  selector: 'app-account-details',
-  templateUrl: './account-details.component.html',
-})
-export class DialogOverviewExampleDialog {
-
-  constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-}
-
-export interface DialogData {
-  animal: string;
-  name: string;
 }
