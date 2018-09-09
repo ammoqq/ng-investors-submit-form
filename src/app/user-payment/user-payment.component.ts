@@ -9,7 +9,6 @@ import {filter, map, tap} from 'rxjs/operators';
 import * as firebase from 'firebase';
 import {Router} from '@angular/router';
 import {AuthService} from '../core/auth.service';
-// import {ConfigService} from '../config.service';
 
 @Component({
   selector: 'app-user-payment',

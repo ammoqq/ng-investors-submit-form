@@ -63,7 +63,7 @@ export class StatusComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.data.subscribe(routeData => {
-      let data = routeData['data'];
+      let data = routeData['status'];
       if (data) {
         this.user = data;
         this.createForm(this.user.name);

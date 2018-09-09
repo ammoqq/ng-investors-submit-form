@@ -1,13 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase';
-import {AngularFireAuth} from 'angularfire2/auth';
-import { UserService } from '../core/user.service';
-import { AuthService } from '../core/auth.service';
-import { FirebaseUserModel } from '../core/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { AngularFireStorage } from 'angularfire2/storage';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import {AccountDetailsModel} from './account-details.model';
 
 @Component({
   selector: 'app-account-details',
@@ -15,14 +11,12 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./account-details.component.scss']
 })
 export class AccountDetailsComponent implements OnInit {
-  user: FirebaseUserModel ;
-  userDetails: any;
+  userDetails: AccountDetailsModel;
   imageBack: string;
   imageFront: string;
+
   constructor(
-    public matDialog: MatDialog,
-    public userService: UserService,
-    public authService: AuthService,
+
     private route: ActivatedRoute,
     private db: AngularFireDatabase,
     private storage: AngularFireStorage,
@@ -30,15 +24,13 @@ export class AccountDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(routeData => {
-      const data = routeData['data'];
-      if (data) {
-        this.userDetails = data;
-        this.onUserFetch();
-      }
+      const data = routeData['accountDetails'];
+      this.userDetails = data;
+      this.onUserFetch();
     });
   }
 
-  onUserFetch() {
+  private onUserFetch() {
     this.storage.storage.ref(`formPhotos/${firebase.auth().currentUser.uid}/${this.userDetails.documentBackId}`)
     .getDownloadURL()
       .then( res => {
