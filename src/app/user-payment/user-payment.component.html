@@ -1,7 +1,8 @@
 <div class="container">
-  <br>
-  <a href="/index/create">{{ kycStatusLabel }}</a>
-<div>
+  <div class="row mt-5">
+    <a href="/index/create">{{ kycStatusLabel }}</a>
+  </div>
+  <div class="row mt-5">
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -79,26 +80,30 @@
     </form>
   </mat-expansion-panel>
 </div>
+  <div class="row mt-5">
+    <div class="row">
+      <h3 class="display-5">Make payment</h3>
+    </div>
+    <div class="row">
+      <h6 class="mat-display-6 col-12">Choose your payment method:</h6>
+      <div class="col">
+        <a href="https://shapeshift.io/#/coins">
+          <div class="paymentBtn">
+            <p>Cryptocurrency</p>
 
-
-  <div>
-    <h3 class="mat-display-1">Make payment</h3>
-    <h6 class="mat-display-6">Choose your payment method:</h6>
-    <a href="https://shapeshift.io/#/coins">
-      <div class="paymentBtn">
-        <p>Cryptocurrency</p>
-        Security Cheklist:
-        !!!Make sure you see the keylock with secure connection on the address bar!!!
-        !!!We will publish the address via a selfie photo on our official Telegram Group (link) and Twitter (link)!!!
-        <img src="../../assets/blob_4Kp3aIl" />
+            <img src="../../assets/blob_4Kp3aIl" />
+          </div>
+        </a>
       </div>
-    </a>
-    <a href="https://shapeshift.io/#/coins">
-      <div class="paymentBtn">
-        <p>Altcoins</p>
-        <img src="../../assets/blob_4Kp3aIl" />
+      <div class="col">
+        <a href="https://shapeshift.io/#/coins">
+          <div class="paymentBtn">
+            <p>Altcoins</p>
+            <img src="../../assets/blob_4Kp3aIl" />
+          </div>
+        </a>
       </div>
-    </a>
+    </div>
     <div class="button-row">
       <button mat-icon-button>
         <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
@@ -117,141 +122,16 @@
       </button>
     </div>
   </div>
-  <div class="row">
+  <div class="row mt-5">
+    <ol class=" alert alert-danger"><h1 class="display-4">Security Cheklist:</h1>
 
-    <!--<form [formGroup]="angForm" class="col-6" novalidate>-->
-        <!--<mat-step label="Personal data">-->
-          <!--<mat-grid-list cols="2" rowHeight="80px">-->
-            <!--<mat-grid-tile>-->
-              <!--<div class="form-group">-->
-                <!--<mat-form-field>-->
-                  <!--<input matInput placeholder="First Name" formControlName="firstName" required>-->
-                  <!--<mat-error>-->
-                    <!--First name is required-->
-                  <!--</mat-error>-->
-                <!--</mat-form-field>-->
-              <!--</div>-->
-            <!--</mat-grid-tile>-->
-            <!--<mat-grid-tile>-->
-              <!--<div class="form-group">-->
-                <!--<mat-form-field>-->
-                  <!--<input matInput placeholder="Last Name" formControlName="lastName" required>-->
-                  <!--<mat-error>-->
-                    <!--Last name is required-->
-                  <!--</mat-error>-->
-                <!--</mat-form-field>-->
-              <!--</div>-->
-            <!--</mat-grid-tile>-->
-            <!--<mat-grid-tile>-->
-              <!--<div class="form-group">-->
-                <!--<mat-form-field>-->
-                  <!--<input matInput placeholder="Address line 1" formControlName="address1" required>-->
-                  <!--<mat-hint>-->
-                    <!--Street, P.O. box, company name-->
-                  <!--</mat-hint>-->
-                  <!--<mat-error>-->
-                    <!--Address is required-->
-                  <!--</mat-error>-->
-                <!--</mat-form-field>-->
-              <!--</div>-->
-            <!--</mat-grid-tile>-->
-            <!--<mat-grid-tile>-->
-              <!--<div class="form-group">-->
-                <!--<mat-form-field>-->
-                  <!--<input matInput placeholder="Address line 2" formControlName="address2">-->
-                  <!--<mat-hint>-->
-                    <!--Apartment, suite, unit, building, floor etc.-->
-                  <!--</mat-hint>-->
-                <!--</mat-form-field>-->
-              <!--</div>-->
-            <!--</mat-grid-tile>-->
-            <!--<mat-grid-tile>-->
-              <!--<div class="form-group">-->
-                <!--<mat-form-field>-->
-                  <!--<input matInput placeholder="Zip code" formControlName="zipCode" required>-->
-                  <!--<mat-error>-->
-                    <!--Zip code is required-->
-                  <!--</mat-error>-->
-                <!--</mat-form-field>-->
-              <!--</div>-->
-            <!--</mat-grid-tile>-->
-            <!--<mat-grid-tile>-->
-              <!--<div class="form-group">-->
-                <!--<mat-form-field>-->
-                  <!--<input matInput placeholder="City" formControlName="city" required>-->
-                  <!--<mat-error>-->
-                    <!--City is required-->
-                  <!--</mat-error>-->
-                <!--</mat-form-field>-->
-              <!--</div>-->
-            <!--</mat-grid-tile>-->
-            <!--<mat-grid-tile>-->
-              <!--<div class="form-group">-->
-                <!--<mat-form-field>-->
-                  <!--<input matInput placeholder="State/Province/Region" formControlName="state" required>-->
-                  <!--<mat-error>-->
-                    <!--State/Province/Region is required-->
-                  <!--</mat-error>-->
-                <!--</mat-form-field>-->
-              <!--</div>-->
-            <!--</mat-grid-tile>-->
-            <!--<mat-grid-tile>-->
-              <!--<div class="form-group">-->
-                <!--<mat-form-field>-->
-                  <!--<mat-select placeholder="Country" formControlName="country" required>-->
-                    <!--<mat-option *ngFor="let country of countries" [value]="country">-->
-                      <!--{{ country }}-->
-                    <!--</mat-option>-->
-                  <!--</mat-select>-->
-                <!--</mat-form-field>-->
-              <!--</div>-->
-            <!--</mat-grid-tile>-->
-          <!--</mat-grid-list>-->
-        <!--</mat-step>-->
-        <!--<mat-step label="Etherum wallet data">-->
-          <!--<div class="form-group">-->
-            <!--<mat-form-field>-->
-              <!--<input matInput placeholder="Ethereum public address" formControlName="ethAddress" required>-->
-              <!--<mat-error>-->
-                <!--Ethereum address is required-->
-              <!--</mat-error>-->
-            <!--</mat-form-field>-->
-          <!--</div>-->
-        <!--</mat-step>-->
-        <!--<mat-step label="ID/Passport images">-->
-          <!--<div class="form-group">-->
-            <!--<div class="row mt-2">-->
-              <!--<label class="mat-body-1 col-8">ID/Passport photo side 1</label>-->
-              <!--<input type="file" [hidden]="true" (change)="onFile1Changed($event)" #file1>-->
-              <!--<button mat-raised-button color="primary" class="col-4" #upload (click)="file1.click()">-->
-                <!--Choose file-->
-              <!--</button>-->
-
-              <!--<mat-progress-bar class="progress-bar mb-1" mode="determinate" [value]="(uploadProgress1 | async)"></mat-progress-bar>-->
-              <!--<p class="ml-2" *ngIf="progressCompleted1">File uploaded successfully</p>-->
-
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="form-group">-->
-            <!--<div class="row mt-3">-->
-              <!--<label class="mat-body-1 col-8">ID/Passport photo side 2</label>-->
-              <!--<input type="file" [hidden]="true" (change)="onFile2Changed($event)" #file2>-->
-              <!--<button mat-raised-button color="primary" class="col-4" #upload (click)="file2.click()">-->
-                <!--Choose file-->
-              <!--</button>-->
-              <!--<mat-progress-bar mode="determinate" class="progress-bar mb-1" [value]="(uploadProgress2 | async)"></mat-progress-bar>-->
-            <!--</div>-->
-            <!--<p class="ml-2" *ngIf="progressCompleted2">File uploaded successfully</p>-->
-          <!--</div>-->
-        <!--</mat-step>-->
-        <!--<mat-step label="Submit">-->
-          <!--<div class="form-group">-->
-            <!--<button mat-raised-button color="primary"  (click)="submitInvestorToVerify()" [disabled]="angForm.pristine || angForm.invalid" class="primary col-2">Submit</button>-->
-          <!--</div>-->
-        <!--</mat-step>-->
-   <!---->
-    <!--</form>-->
-
+      <li>Make sure you see the keylock with secure connection on the address bar
+       </li>
+      <li> We will publish the address via a selfie photo on our official Telegram Group (link) and Twitter (link)</li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ol>
   </div>
 </div>
 

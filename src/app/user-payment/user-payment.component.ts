@@ -70,9 +70,8 @@ export class UserPaymentComponent implements OnInit {
 
 
   ngOnInit() {
-    let self = this;
     firebase.database().ref('/config').once('value').then(function(snapshot) {
-      self.ethAddress = snapshot.toJSON()['crowdsaleETHAddress'].toString();
+      this.ethAddress = snapshot.toJSON()['crowdsaleETHAddress'].toString();
     });
   }
 }
