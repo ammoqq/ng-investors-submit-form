@@ -18,6 +18,7 @@ import { UserService } from './core/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import {MatInputModule} from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 // import { AngularFireStorage } from 'angularfire2/storage';
 import {
   MatToolbarModule,
@@ -39,6 +40,9 @@ import { CreateComponent } from './create/create.component';
 import { ShareService } from './share.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UserPaymentComponent} from './user-payment/user-payment.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminPaymentComponent } from './admin-payment/admin-payment.component';
+import { AdminIndexComponent } from './admin-index/admin-index.component';
 
 @NgModule({
   declarations: [
@@ -48,9 +52,13 @@ import {UserPaymentComponent} from './user-payment/user-payment.component';
     RegisterComponent,
     IndexComponent,
     CreateComponent,
-    UserPaymentComponent
+    UserPaymentComponent,
+    AdminLoginComponent,
+    AdminPaymentComponent,
+    AdminIndexComponent
   ],
   imports: [
+    FormsModule,
     MatProgressBarModule,
     MatIconModule,
     MatCardModule,

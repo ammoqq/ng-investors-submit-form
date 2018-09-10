@@ -1,15 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../core/auth.service';
 import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import * as firebase from 'firebase';
 
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.component.html',
-  styleUrls: ['login.scss']
+  selector: 'app-admin-login',
+  templateUrl: './admin-login.component.html',
+  styleUrls: ['./admin-login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class AdminLoginComponent implements OnInit {
 
   hide = true;
   loginForm: FormGroup;
@@ -48,12 +48,13 @@ export class LoginComponent implements OnInit {
 
   tryLogin(value){
     this.authService.doLogin(value)
-    .then(res => {
+      .then(res => {
 
-      console.log(res);
-    }, err => {
-      console.log(err);
-      this.errorMessage = err.message;
-    });
+        console.log(res);
+      }, err => {
+        console.log(err);
+        this.errorMessage = err.message;
+      });
   }
+
 }
