@@ -9,10 +9,14 @@ import { CreateComponent } from './create/create.component';
 import { IndexComponent } from './index/index.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import {UserPaymentComponent} from './user-payment/user-payment.component';
+<<<<<<< HEAD
 import {AccountDetailsResolver} from './account-details/account-details.resolver';
+=======
+import {IndexPageComponent} from './index-page/index-page.component';
+>>>>>>> master
 
 export const rootRouterConfig: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', component: IndexPageComponent  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'index',
