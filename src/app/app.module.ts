@@ -18,6 +18,8 @@ import { UserService } from './core/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import {MatInputModule} from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+
 // import { AngularFireStorage } from 'angularfire2/storage';
 import {
   MatToolbarModule,
@@ -65,6 +67,7 @@ import { AnonymousGuard } from './core/anonymous.guard';
     ResendComponent
   ],
   imports: [
+    FormsModule,
     MatProgressBarModule,
     MatIconModule,
     MatCardModule,
