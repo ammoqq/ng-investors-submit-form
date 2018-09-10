@@ -8,9 +8,10 @@ import { AuthGuard } from './core/auth.guard';
 import { CreateComponent } from './create/create.component';
 import { IndexComponent } from './index/index.component';
 import {UserPaymentComponent} from './user-payment/user-payment.component';
+import {IndexPageComponent} from './index-page/index-page.component';
 
 export const rootRouterConfig: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', component: IndexPageComponent  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'index',
