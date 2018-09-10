@@ -47,6 +47,7 @@ import { IndexPageComponent } from './index-page/index-page.component';
 import {ResetPwComponent} from './reset-pw/reset-pw.component';
 import {ResendComponent} from './resend/resend.component';
 import {AccountDetailsResolver} from './account-details/account-details.resolver';
+import { AnonymousGuard } from './core/anonymous.guard';
 
 
 @NgModule({
@@ -89,7 +90,7 @@ import {AccountDetailsResolver} from './account-details/account-details.resolver
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [AuthService, UserService, StatusResolver, AuthGuard, ShareService, AccountDetailsResolver],
+  providers: [AuthService, UserService, StatusResolver, AuthGuard, ShareService, AccountDetailsResolver, AnonymousGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

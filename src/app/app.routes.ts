@@ -11,11 +11,12 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
 import {UserPaymentComponent} from './user-payment/user-payment.component';
 import {IndexPageComponent} from './index-page/index-page.component';
 import {AccountDetailsResolver} from './account-details/account-details.resolver';
+import { AnonymousGuard } from './core/anonymous.guard';
 
 export const rootRouterConfig: Routes = [
   { path: '', component: IndexPageComponent  },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent, canActivate: [AnonymousGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [AnonymousGuard]  },
   { path: 'index',
     component: IndexComponent,
     canActivate: [AuthGuard],
@@ -26,5 +27,6 @@ export const rootRouterConfig: Routes = [
       { path: 'create', component: CreateComponent, canActivate: [AuthGuard]  },
       { path: 'account-details', component: AccountDetailsComponent, canActivate: [AuthGuard], resolve: { accountDetails: AccountDetailsResolver, status: StatusResolver}}
     ]
-  }
+  },
+  {path: '**', redirectTo: ''  }
 ];

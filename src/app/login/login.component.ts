@@ -27,14 +27,8 @@ export class LoginComponent implements OnInit {
     firebase
       .auth()
       .onAuthStateChanged(user => {
-        console.log("ccc")
         if (user && user.emailVerified) {
           this.router.navigate(['/index']);
-
-        } else {
-          console.log("ccc1")
-          console.log(user)
-
         }
       });
   }
