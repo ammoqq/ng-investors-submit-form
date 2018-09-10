@@ -34,7 +34,8 @@ import {
   MatStepperModule,
   MatProgressBarModule,
   MatDialogModule,
-  MatRadioModule
+  MatRadioModule,
+  MatTabsModule
 
 } from '@angular/material';
 
@@ -50,6 +51,8 @@ import {ResetPwComponent} from './reset-pw/reset-pw.component';
 import {ResendComponent} from './resend/resend.component';
 import {AccountDetailsResolver} from './account-details/account-details.resolver';
 import { AnonymousGuard } from './core/anonymous.guard';
+import { PayuService } from './user-payment/payu.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -83,6 +86,7 @@ import { AnonymousGuard } from './core/anonymous.guard';
     MatExpansionModule,
     MatButtonModule,
     MatCardModule,
+    MatTabsModule,
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
@@ -92,8 +96,9 @@ import { AnonymousGuard } from './core/anonymous.guard';
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     AngularFireModule.initializeApp(environment.firebase),
+    HttpClientModule
   ],
-  providers: [AuthService, UserService, StatusResolver, AuthGuard, ShareService, AccountDetailsResolver, AnonymousGuard],
+  providers: [AuthService, UserService, StatusResolver, AuthGuard, ShareService, AccountDetailsResolver, AnonymousGuard, PayuService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

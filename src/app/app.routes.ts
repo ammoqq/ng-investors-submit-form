@@ -23,7 +23,7 @@ export const rootRouterConfig: Routes = [
     children: [
       { path: '', redirectTo: 'userPayment', pathMatch: 'full'},
       { path: 'userPayment', component: UserPaymentComponent, canActivate: [AuthGuard]  },
-      { path: 'status', component: StatusComponent, canActivate: [AuthGuard],  resolve: { status: StatusResolver} },
+      // { path: 'status', component: StatusComponent, canActivate: [AuthGuard],  resolve: { status: StatusResolver} },
       { path: 'create', component: CreateComponent, canActivate: [AuthGuard]  },
       { path: 'account-details', component: AccountDetailsComponent, canActivate: [AuthGuard], resolve: { accountDetails: AccountDetailsResolver, status: StatusResolver}}
     ]
