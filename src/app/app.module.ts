@@ -43,7 +43,13 @@ import { ShareService } from './share.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import {UserPaymentComponent} from './user-payment/user-payment.component';
+<<<<<<< HEAD
 import {AccountDetailsResolver} from './account-details/account-details.resolver';
+=======
+import { IndexPageComponent } from './index-page/index-page.component';
+import {ResetPwComponent} from './reset-pw/reset-pw.component';
+import {ResendComponent} from './resend/resend.component';
+>>>>>>> master
 
 @NgModule({
   declarations: [
@@ -54,7 +60,10 @@ import {AccountDetailsResolver} from './account-details/account-details.resolver
     IndexComponent,
     AccountDetailsComponent,
     CreateComponent,
-    UserPaymentComponent
+    UserPaymentComponent,
+    IndexPageComponent,
+    ResetPwComponent,
+    ResendComponent
   ],
   imports: [
     MatProgressBarModule,
