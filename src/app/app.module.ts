@@ -30,7 +30,10 @@ import {
   MatIconModule,
   MatGridListModule,
   MatStepperModule,
-  MatProgressBarModule, MatRadioModule
+  MatProgressBarModule,
+  MatDialogModule,
+  MatRadioModule
+
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -38,10 +41,15 @@ import { IndexComponent } from './index/index.component';
 import { CreateComponent } from './create/create.component';
 import { ShareService } from './share.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AccountDetailsComponent } from './account-details/account-details.component';
 import {UserPaymentComponent} from './user-payment/user-payment.component';
+<<<<<<< HEAD
+import {AccountDetailsResolver} from './account-details/account-details.resolver';
+=======
 import { IndexPageComponent } from './index-page/index-page.component';
 import {ResetPwComponent} from './reset-pw/reset-pw.component';
 import {ResendComponent} from './resend/resend.component';
+>>>>>>> master
 
 @NgModule({
   declarations: [
@@ -50,6 +58,7 @@ import {ResendComponent} from './resend/resend.component';
     StatusComponent,
     RegisterComponent,
     IndexComponent,
+    AccountDetailsComponent,
     CreateComponent,
     UserPaymentComponent,
     IndexPageComponent,
@@ -65,6 +74,7 @@ import {ResendComponent} from './resend/resend.component';
     MatRadioModule,
     MatInputModule,
     MatSnackBarModule,
+    MatDialogModule,
     MatToolbarModule,
     MatGridListModule,
     MatStepperModule,
@@ -81,7 +91,7 @@ import {ResendComponent} from './resend/resend.component';
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [AuthService, UserService, StatusResolver, AuthGuard, ShareService],
+  providers: [AuthService, UserService, StatusResolver, AuthGuard, ShareService, AccountDetailsResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,44 @@
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">First name:<p class="float-right">{{userDetails.firstName}}</p></li>
+          <li class="list-group-item">Last name:<p class="float-right">{{userDetails.lastName}}</p></li>
+          <!--<li class="list-group-item">Email: <p class="float-right">{{user.email}}</p></li>-->
+          <li class="list-group-item">ETH address: <p class="float-right">{{userDetails.ethAddress}}</p></li>
+
+        </ul>
+    </div>
+    <div class="col ">
+      <ul class="list-group list-group-flush bg-light">
+        <li class="list-group-item">Address: <p class="float-right">{{userDetails.address1}} {{userDetails.address2}}</p></li>
+        <li class="list-group-item"> <p class="float-right">{{userDetails.city}} {{userDetails.zipCode}}</p></li>
+        <li class="list-group-item"><p class="float-right">{{userDetails.state}} {{userDetails.country}}</p></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-6">
+      <mat-card>
+        <mat-card-title>
+          Front image
+        </mat-card-title>
+        <mat-card-content>
+          <img src="{{imageFront}}" class="img-fluid">
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+  <div class="col-6">
+    <mat-card>
+      <mat-card-title>
+        Back image
+      </mat-card-title>
+      <mat-card-content>
+        <img src="{{imageBack}}" class="img-fluid">
+      </mat-card-content>
+    </mat-card>
+  </div>
+  </div>
+</div>

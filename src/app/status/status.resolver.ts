@@ -19,6 +19,7 @@ export class StatusResolver implements Resolve<FirebaseUserModel> {
           user.image = 'http://dsi-vd.github.io/patternlab-vd/images/fpo_avatar.png';
           user.name = res.displayName;
           user.provider = res.providerData[0].providerId;
+          user.email = res.providerData[0].email;
           return resolve(user);
         }
         else{
