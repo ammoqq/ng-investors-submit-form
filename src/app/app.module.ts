@@ -35,7 +35,8 @@ import {
   MatProgressBarModule,
   MatDialogModule,
   MatRadioModule,
-  MatTabsModule
+  MatTabsModule,
+  MatTableModule
 
 } from '@angular/material';
 
@@ -53,6 +54,8 @@ import {AccountDetailsResolver} from './account-details/account-details.resolver
 import { AnonymousGuard } from './core/anonymous.guard';
 import { PayuService } from './user-payment/payu.service';
 import { HttpClientModule } from '@angular/common/http';
+import { TransactionListComponent } from './transaction-list/transaction-list.component';
+import {TransactionListResolver} from './transaction-list/transaction-list.resolver';
 
 
 @NgModule({
@@ -67,7 +70,8 @@ import { HttpClientModule } from '@angular/common/http';
     UserPaymentComponent,
     IndexPageComponent,
     ResetPwComponent,
-    ResendComponent
+    ResendComponent,
+    TransactionListComponent
   ],
   imports: [
     FormsModule,
@@ -87,6 +91,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatCardModule,
     MatTabsModule,
+    MatTableModule,
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
@@ -98,7 +103,7 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFireModule.initializeApp(environment.firebase),
     HttpClientModule
   ],
-  providers: [AuthService, UserService, StatusResolver, AuthGuard, ShareService, AccountDetailsResolver, AnonymousGuard, PayuService],
+  providers: [AuthService, UserService, StatusResolver, AuthGuard, ShareService, AccountDetailsResolver, AnonymousGuard, PayuService, TransactionListResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

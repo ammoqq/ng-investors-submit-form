@@ -12,6 +12,9 @@ import {UserPaymentComponent} from './user-payment/user-payment.component';
 import {IndexPageComponent} from './index-page/index-page.component';
 import {AccountDetailsResolver} from './account-details/account-details.resolver';
 import { AnonymousGuard } from './core/anonymous.guard';
+import {TransactionListComponent} from './transaction-list/transaction-list.component';
+import {TransactionListService} from './transaction-list/transaction-list.service';
+import {TransactionListResolver} from './transaction-list/transaction-list.resolver';
 
 export const rootRouterConfig: Routes = [
   { path: '', component: IndexPageComponent  },
@@ -21,7 +24,8 @@ export const rootRouterConfig: Routes = [
     component: IndexComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'userPayment', pathMatch: 'full'},
+      { path: '', redirectTo: 'transactionList', pathMatch: 'full'},
+      { path: 'transactionList', component: TransactionListComponent, canActivate: [AuthGuard], resolve: {transactionList: TransactionListResolver}  },
       { path: 'userPayment', component: UserPaymentComponent, canActivate: [AuthGuard]  },
       // { path: 'status', component: StatusComponent, canActivate: [AuthGuard],  resolve: { status: StatusResolver} },
       { path: 'create', component: CreateComponent, canActivate: [AuthGuard]  },

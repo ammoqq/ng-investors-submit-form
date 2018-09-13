@@ -1,0 +1,38 @@
+<table mat-table [dataSource]="transactions" class="mat-elevation-z8">
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="amountPaid">
+    <th mat-header-cell *matHeaderCellDef> Amount Paid </th>
+    <td mat-cell *matCellDef="let element"> {{element.amountPaid}} </td>
+  </ng-container>
+  <ng-container matColumnDef="coinsBought">
+    <th mat-header-cell *matHeaderCellDef> Coins Bought </th>
+    <td mat-cell *matCellDef="let element"> {{element.coinsBought}} </td>
+  </ng-container>
+  <ng-container matColumnDef="currency">
+    <th mat-header-cell *matHeaderCellDef> Currency </th>
+    <td mat-cell *matCellDef="let element"> {{element.currency}} </td>
+  </ng-container>
+  <ng-container matColumnDef="info">
+    <th mat-header-cell *matHeaderCellDef> Amount Paid </th>
+    <td mat-cell *matCellDef="let element"> {{element.info}} </td>
+  </ng-container>
+  <ng-container matColumnDef="paymentConfirmationId">
+    <th mat-header-cell *matHeaderCellDef> Payment Confirmation Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.paymentConfirmationId}} </td>
+  </ng-container>
+  <ng-container matColumnDef="transaction">
+  <th mat-header-cell *matHeaderCellDef> Transaction </th>
+  <td mat-cell *matCellDef="let element"> {{element.transaction}} </td>
+  </ng-container>
+  <ng-container matColumnDef="approved">
+    <th mat-header-cell *matHeaderCellDef> Approved </th>
+    <td mat-cell *matCellDef="let element"> {{element.approved}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
