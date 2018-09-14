@@ -9,25 +9,28 @@ import { CreateComponent } from './create/create.component';
 import { IndexComponent } from './index/index.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import {UserPaymentComponent} from './user-payment/user-payment.component';
-<<<<<<< HEAD
+import { AnonymousGuard } from './core/anonymous.guard';
+import {TransactionListComponent} from './transaction-list/transaction-list.component';
+import {TransactionListService} from './transaction-list/transaction-list.service';
+import {TransactionListResolver} from './transaction-list/transaction-list.resolver';
 import {AccountDetailsResolver} from './account-details/account-details.resolver';
-=======
 import {IndexPageComponent} from './index-page/index-page.component';
->>>>>>> master
 
 export const rootRouterConfig: Routes = [
   { path: '', component: IndexPageComponent  },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent, canActivate: [AnonymousGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [AnonymousGuard]  },
   { path: 'index',
     component: IndexComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'userPayment', pathMatch: 'full'},
+      { path: '', redirectTo: 'transactionList', pathMatch: 'full'},
+      { path: 'transactionList', component: TransactionListComponent, canActivate: [AuthGuard], resolve: {transactionList: TransactionListResolver}  },
       { path: 'userPayment', component: UserPaymentComponent, canActivate: [AuthGuard]  },
-      { path: 'status', component: StatusComponent, canActivate: [AuthGuard],  resolve: { status: StatusResolver} },
+      // { path: 'status', component: StatusComponent, canActivate: [AuthGuard],  resolve: { status: StatusResolver} },
       { path: 'create', component: CreateComponent, canActivate: [AuthGuard]  },
       { path: 'account-details', component: AccountDetailsComponent, canActivate: [AuthGuard], resolve: { accountDetails: AccountDetailsResolver, status: StatusResolver}}
     ]
-  }
+  },
+  {path: '**', redirectTo: ''  }
 ];

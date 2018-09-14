@@ -5,7 +5,7 @@ import { UserService } from '../core/user.service';
 
 
 @Injectable()
-export class AuthGuard implements CanActivate, CanActivateChild {
+export class AnonymousGuard implements CanActivate {
 
 
   constructor(
@@ -18,22 +18,14 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     return new Promise((resolve, reject) => {
       this.userService.getCurrentUser()
       .then(user => {
-
-        if (user && user.emailVerified === true) {
-          return resolve(true);
-        } else {
-          return resolve(true);
-        }
-
+        this.router.navigate(['/index']);
+        return resolve(false)
       }, err => {
-        this.router.navigate(['/login']);
-        return resolve(false);
+        return resolve(true);
       });
     })
   }
 
-  canActivateChild(route: ActivatedRouteSnapshot): Promise<boolean> {
-    return this.canActivate(route)
-  }
+
 
 }

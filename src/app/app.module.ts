@@ -18,6 +18,8 @@ import { UserService } from './core/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import {MatInputModule} from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+
 // import { AngularFireStorage } from 'angularfire2/storage';
 import {
   MatToolbarModule,
@@ -32,7 +34,9 @@ import {
   MatStepperModule,
   MatProgressBarModule,
   MatDialogModule,
-  MatRadioModule
+  MatRadioModule,
+  MatTabsModule,
+  MatTableModule
 
 } from '@angular/material';
 
@@ -43,13 +47,15 @@ import { ShareService } from './share.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import {UserPaymentComponent} from './user-payment/user-payment.component';
-<<<<<<< HEAD
-import {AccountDetailsResolver} from './account-details/account-details.resolver';
-=======
 import { IndexPageComponent } from './index-page/index-page.component';
 import {ResetPwComponent} from './reset-pw/reset-pw.component';
 import {ResendComponent} from './resend/resend.component';
->>>>>>> master
+import {AccountDetailsResolver} from './account-details/account-details.resolver';
+import { AnonymousGuard } from './core/anonymous.guard';
+import { PayuService } from './user-payment/payu.service';
+import { HttpClientModule } from '@angular/common/http';
+import { TransactionListComponent } from './transaction-list/transaction-list.component';
+import {TransactionListResolver} from './transaction-list/transaction-list.resolver';
 
 @NgModule({
   declarations: [
@@ -63,9 +69,11 @@ import {ResendComponent} from './resend/resend.component';
     UserPaymentComponent,
     IndexPageComponent,
     ResetPwComponent,
-    ResendComponent
+    ResendComponent,
+    TransactionListComponent
   ],
   imports: [
+    FormsModule,
     MatProgressBarModule,
     MatIconModule,
     MatCardModule,
@@ -81,6 +89,8 @@ import {ResendComponent} from './resend/resend.component';
     MatExpansionModule,
     MatButtonModule,
     MatCardModule,
+    MatTabsModule,
+    MatTableModule,
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
@@ -90,8 +100,9 @@ import {ResendComponent} from './resend/resend.component';
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     AngularFireModule.initializeApp(environment.firebase),
+    HttpClientModule
   ],
-  providers: [AuthService, UserService, StatusResolver, AuthGuard, ShareService, AccountDetailsResolver],
+  providers: [AuthService, UserService, StatusResolver, AuthGuard, ShareService, AccountDetailsResolver, AnonymousGuard, PayuService, TransactionListResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

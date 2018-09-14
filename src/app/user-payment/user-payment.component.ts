@@ -9,10 +9,10 @@ import {filter, map, tap} from 'rxjs/operators';
 import * as firebase from 'firebase';
 import {Router} from '@angular/router';
 import {AuthService} from '../core/auth.service';
-<<<<<<< HEAD
-// import {ConfigService} from '../config.service';
-=======
->>>>>>> master
+import { PayuService } from './payu.service';
+import { ViewChild } from '@angular/core';
+import { MatStepper } from '@angular/material';
+
 
 @Component({
   selector: 'app-user-payment',
@@ -21,6 +21,7 @@ import {AuthService} from '../core/auth.service';
 })
 
 export class UserPaymentComponent implements OnInit {
+  [x: string]: any;
   ethAddress = "Loading the address..."
   kycStatusLabel = "You need to have KYC approved to send coins"
  // pendingText = "Your KYC submission has been approved"
@@ -32,13 +33,19 @@ export class UserPaymentComponent implements OnInit {
 
   uploadProgress: Observable<number>;
   chosenPayment: string;
+  @ViewChild('stepper') stepper: MatStepper;
 
-
-  constructor(private shareservice: ShareService, private fb: FormBuilder, private database: AngularFirestore, private storage: AngularFireStorage, private router: Router, public authService: AuthService,) {
-
-    this.createForm();
-
-  }
+  constructor(
+              private payuService: PayuService,
+              private shareservice: ShareService,
+              private fb: FormBuilder,
+              private database: AngularFirestore,
+              private storage: AngularFireStorage,
+              private router: Router,
+              public authService: AuthService,)
+              {
+                this.createForm();
+              }
   createForm() {
     this.angForm = this.fb.group({
       options: ['', Validators.required ],
@@ -74,10 +81,20 @@ export class UserPaymentComponent implements OnInit {
 
 
   ngOnInit() {
-    let self = this;
     firebase.database().ref('/config').once('value').then(function(snapshot) {
-      self.ethAddress = snapshot.toJSON()['crowdsaleETHAddress'].toString();
+      this.ethAddress = snapshot.toJSON()['crowdsaleETHAddress'].toString();
     });
   }
-}
 
+  payuButton() {
+    // this.payuService.sendPayu().subscribe( data => console.log(data))
+
+    this.payuService.getOAuth().subscribe( data => console.log(data))
+  }
+
+  goTo(index: number) {
+    this.stepper.selectedIndex = index
+  }
+
+
+}

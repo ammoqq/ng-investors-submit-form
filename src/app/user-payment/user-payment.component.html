@@ -1,257 +1,119 @@
 <div class="container">
-  <br>
-  <a href="/index/create">{{ kycStatusLabel }}</a>
-<div>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Enter transaction details
-      </mat-panel-title>
-      <mat-panel-description>
+  <mat-vertical-stepper #stepper >
+    <mat-step label="Please follow steps">
+      <p><a href="/index/create">{{ kycStatusLabel }}</a></p>
 
-      </mat-panel-description>
-    </mat-expansion-panel-header>
+      <p class="alert alert-light">Its very important to follow steps to make sure that transation will be secure</p>
 
-    <form [formGroup]="angForm" class="col-6" novalidate>
-      Choose one of the following*
-    <div class="form-group">
-      <mat-radio-group class="example-radio-group" formControlName="options">
-        <mat-radio-button value="1">Paid with Credit Card/PayU/Bank wire transfer</mat-radio-button>
-        <mat-radio-button value="2">Paid with BTC, ETH, or any other alt-coins</mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div class="form-group">
-      <mat-form-field>
-        <mat-select placeholder="Currency" formControlName="currency" required>
-          <mat-option *ngFor="let currency of currencies" [value]="currency">
-            {{ currency }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field>
-        <input matInput placeholder="Other currency">
-      </mat-form-field>
-    </div>
-    <div>
-    <mat-form-field>
-      <input matInput placeholder="Amount paid (how much did you pay?)" formControlName="amountPaid" required>
-      <mat-error>
-        Amount Paid is required
-      </mat-error>
-    </mat-form-field>
-    </div>
-    <div>
-    <mat-form-field>
-      <input matInput placeholder="How much coins did you intent to buy ?)" formControlName="coinsBought" required>
-      <mat-error>
-        Coins intended to buy is required
-      </mat-error>
-    </mat-form-field>
-    </div>
-    <div>
-    <mat-form-field>
-      <input matInput placeholder="Transaction ID (transaction id on ethereum network or id of your bank wire" formControlName="transactionID">
-    </mat-form-field>
-    </div>
-    <div>
-    <mat-form-field>
-      <input matInput placeholder="Any other information you would like to tell us ?" formControlName="info">
-    </mat-form-field>
-    </div>
-    <div class="form-group">
-      <div class="row mt-2">
-        <label class="mat-body-1 col-8">Please upload screenshot of transaction that you've made</label>
-        <input type="file" [hidden]="true" (change)="onFileChanged($event)" #file1>
-        <button mat-raised-button color="primary" class="col-4" #upload (click)="file1.click()">
-          Choose file
-        </button>
-
-        <mat-progress-bar class="progress-bar mb-1" mode="determinate" [value]="(uploadProgress | async)"></mat-progress-bar>
-        <p class="ml-2" *ngIf="progressCompleted">File uploaded successfully</p>
+      <div class="alert alert-secondary">
+        <h3>Already made a payment?</h3>
+        <p> If you are ready to insert transaction details click button below. This is final and mandatory step to receive the coins </p>
+        <button class="center" mat-raised-button color="accent" (click)="goTo(3)">Enter transaction details</button>
 
       </div>
-    </div>
-    <div class="form-group">
-      <button mat-raised-button color="primary"  (click)="submitTransactionDetails()" [disabled]="angForm.pristine || angForm.invalid" class="primary col-2">Submit</button>
-    </div>
-    </form>
-  </mat-expansion-panel>
+    </mat-step>
+    <mat-step label="Checkout security checklist">
+      <div class="center mt-2">
+        <ol class=" alert alert-danger"><h1 class="display-4">Security Cheklist:</h1>
+
+          <li>Make sure you see the keylock with secure connection on the address bar
+           </li>
+          <li> We will publish the address via a selfie photo on our official Telegram Group (link) and Twitter (link)</li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ol>
+      </div>
+    </mat-step>
+
+    <mat-step label="Choose payment method">
+
+      <mat-grid-list cols="2" rowHeight="250px">
+        <mat-grid-tile>
+          <div class="col">
+           <button  style="border: 0px; height: 50px; width: 290px; background: url('http://static.payu.com/pl/standard/partners/buttons/payu_account_button_long_03.png'); cursor: pointer;"
+            (click)="payuButton()"></button>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div class="col">
+             <a id="changellyButton" href="https://changelly.com/widget/v1?auth=email&from=USD&to=ETH&merchant_id=tkfe18zwhxl4j8n5&address=&amount=1&ref_id=tkfe18zwhxl4j8n5&color=00cf70"
+              target="_blank">
+            <img src="https://changelly.com/pay_button.png" />
+            </a>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-step>
+    <mat-step label="Enter transaction details">
+      <div class="mt-5">
+
+          <form [formGroup]="angForm" class="col-8" novalidate>
+            Choose one of the following*
+          <div class="form-group">
+            <mat-radio-group class="example-radio-group" formControlName="options">
+              <mat-radio-button value="1">Paid with Credit Card/PayU/Bank wire transfer</mat-radio-button>
+              <mat-radio-button value="2">Paid with BTC, ETH, or any other alt-coins</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div class="form-group">
+            <mat-form-field >
+              <mat-select placeholder="Currency" formControlName="currency" required>
+                <mat-option *ngFor="let currency of currencies" [value]="currency">
+                  {{ currency }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Other currency">
+            </mat-form-field>
+          </div>
+          <div>
+          <mat-form-field>
+            <input matInput placeholder="Amount paid (how much did you pay?)" formControlName="amountPaid" required>
+            <mat-error>
+              Amount Paid is required
+            </mat-error>
+          </mat-form-field>
+          </div>
+          <div>
+          <mat-form-field>
+            <input matInput placeholder="How much coins did you intent to buy ?" formControlName="coinsBought" required>
+            <mat-error>
+              Coins intended to buy is required
+            </mat-error>
+          </mat-form-field>
+          </div>
+          <div>
+          <mat-form-field>
+            <input matInput placeholder="Transaction ID (transaction id on ethereum network or id of your bank wire" formControlName="transactionID">
+          </mat-form-field>
+          </div>
+          <div>
+          <mat-form-field>
+            <input matInput placeholder="Any other information you would like to tell us ?" formControlName="info">
+          </mat-form-field>
+          </div>
+          <div class="form-group">
+            <div class="row mt-2">
+              <label class="mat-body-1 col">Please upload screenshot of transaction that you've made</label>
+              <input type="file" [hidden]="true" (change)="onFileChanged($event)" #file1>
+              <button mat-raised-button color="primary" class="col-4" #upload (click)="file1.click()">
+                Choose file
+              </button>
+
+              <mat-progress-bar class="progress-bar mb-1" mode="determinate" [value]="(uploadProgress | async)"></mat-progress-bar>
+              <p class="ml-2" *ngIf="progressCompleted">File uploaded successfully</p>
+
+            </div>
+          </div>
+          <div class="form-group">
+            <button mat-raised-button color="primary"  (click)="submitTransactionDetails()" [disabled]="angForm.pristine || angForm.invalid" class="primary col-2">Submit</button>
+          </div>
+          </form>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
 </div>
-
-
-  <div>
-    <h3 class="mat-display-1">Make payment</h3>
-    <h6 class="mat-display-6">Choose your payment method:</h6>
-    <a href="https://shapeshift.io/#/coins">
-      <div class="paymentBtn">
-        <p>Cryptocurrency</p>
-        Security Cheklist:
-        !!!Make sure you see the keylock with secure connection on the address bar!!!
-        !!!We will publish the address via a selfie photo on our official Telegram Group (link) and Twitter (link)!!!
-        <img src="../../assets/blob_4Kp3aIl" />
-      </div>
-    </a>
-    <a href="https://shapeshift.io/#/coins">
-      <div class="paymentBtn">
-        <p>Altcoins</p>
-        <img src="../../assets/blob_4Kp3aIl" />
-      </div>
-    </a>
-    <div class="button-row">
-      <button mat-icon-button>
-        <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-      </button>
-      <button mat-icon-button color="primary">
-        <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-      </button>
-      <button mat-icon-button color="accent">
-        <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-      </button>
-      <button mat-icon-button color="warn">
-        <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-      </button>
-      <button mat-icon-button disabled>
-        <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-      </button>
-    </div>
-  </div>
-  <div class="row">
-
-    <!--<form [formGroup]="angForm" class="col-6" novalidate>-->
-        <!--<mat-step label="Personal data">-->
-          <!--<mat-grid-list cols="2" rowHeight="80px">-->
-            <!--<mat-grid-tile>-->
-              <!--<div class="form-group">-->
-                <!--<mat-form-field>-->
-                  <!--<input matInput placeholder="First Name" formControlName="firstName" required>-->
-                  <!--<mat-error>-->
-                    <!--First name is required-->
-                  <!--</mat-error>-->
-                <!--</mat-form-field>-->
-              <!--</div>-->
-            <!--</mat-grid-tile>-->
-            <!--<mat-grid-tile>-->
-              <!--<div class="form-group">-->
-                <!--<mat-form-field>-->
-                  <!--<input matInput placeholder="Last Name" formControlName="lastName" required>-->
-                  <!--<mat-error>-->
-                    <!--Last name is required-->
-                  <!--</mat-error>-->
-                <!--</mat-form-field>-->
-              <!--</div>-->
-            <!--</mat-grid-tile>-->
-            <!--<mat-grid-tile>-->
-              <!--<div class="form-group">-->
-                <!--<mat-form-field>-->
-                  <!--<input matInput placeholder="Address line 1" formControlName="address1" required>-->
-                  <!--<mat-hint>-->
-                    <!--Street, P.O. box, company name-->
-                  <!--</mat-hint>-->
-                  <!--<mat-error>-->
-                    <!--Address is required-->
-                  <!--</mat-error>-->
-                <!--</mat-form-field>-->
-              <!--</div>-->
-            <!--</mat-grid-tile>-->
-            <!--<mat-grid-tile>-->
-              <!--<div class="form-group">-->
-                <!--<mat-form-field>-->
-                  <!--<input matInput placeholder="Address line 2" formControlName="address2">-->
-                  <!--<mat-hint>-->
-                    <!--Apartment, suite, unit, building, floor etc.-->
-                  <!--</mat-hint>-->
-                <!--</mat-form-field>-->
-              <!--</div>-->
-            <!--</mat-grid-tile>-->
-            <!--<mat-grid-tile>-->
-              <!--<div class="form-group">-->
-                <!--<mat-form-field>-->
-                  <!--<input matInput placeholder="Zip code" formControlName="zipCode" required>-->
-                  <!--<mat-error>-->
-                    <!--Zip code is required-->
-                  <!--</mat-error>-->
-                <!--</mat-form-field>-->
-              <!--</div>-->
-            <!--</mat-grid-tile>-->
-            <!--<mat-grid-tile>-->
-              <!--<div class="form-group">-->
-                <!--<mat-form-field>-->
-                  <!--<input matInput placeholder="City" formControlName="city" required>-->
-                  <!--<mat-error>-->
-                    <!--City is required-->
-                  <!--</mat-error>-->
-                <!--</mat-form-field>-->
-              <!--</div>-->
-            <!--</mat-grid-tile>-->
-            <!--<mat-grid-tile>-->
-              <!--<div class="form-group">-->
-                <!--<mat-form-field>-->
-                  <!--<input matInput placeholder="State/Province/Region" formControlName="state" required>-->
-                  <!--<mat-error>-->
-                    <!--State/Province/Region is required-->
-                  <!--</mat-error>-->
-                <!--</mat-form-field>-->
-              <!--</div>-->
-            <!--</mat-grid-tile>-->
-            <!--<mat-grid-tile>-->
-              <!--<div class="form-group">-->
-                <!--<mat-form-field>-->
-                  <!--<mat-select placeholder="Country" formControlName="country" required>-->
-                    <!--<mat-option *ngFor="let country of countries" [value]="country">-->
-                      <!--{{ country }}-->
-                    <!--</mat-option>-->
-                  <!--</mat-select>-->
-                <!--</mat-form-field>-->
-              <!--</div>-->
-            <!--</mat-grid-tile>-->
-          <!--</mat-grid-list>-->
-        <!--</mat-step>-->
-        <!--<mat-step label="Etherum wallet data">-->
-          <!--<div class="form-group">-->
-            <!--<mat-form-field>-->
-              <!--<input matInput placeholder="Ethereum public address" formControlName="ethAddress" required>-->
-              <!--<mat-error>-->
-                <!--Ethereum address is required-->
-              <!--</mat-error>-->
-            <!--</mat-form-field>-->
-          <!--</div>-->
-        <!--</mat-step>-->
-        <!--<mat-step label="ID/Passport images">-->
-          <!--<div class="form-group">-->
-            <!--<div class="row mt-2">-->
-              <!--<label class="mat-body-1 col-8">ID/Passport photo side 1</label>-->
-              <!--<input type="file" [hidden]="true" (change)="onFile1Changed($event)" #file1>-->
-              <!--<button mat-raised-button color="primary" class="col-4" #upload (click)="file1.click()">-->
-                <!--Choose file-->
-              <!--</button>-->
-
-              <!--<mat-progress-bar class="progress-bar mb-1" mode="determinate" [value]="(uploadProgress1 | async)"></mat-progress-bar>-->
-              <!--<p class="ml-2" *ngIf="progressCompleted1">File uploaded successfully</p>-->
-
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="form-group">-->
-            <!--<div class="row mt-3">-->
-              <!--<label class="mat-body-1 col-8">ID/Passport photo side 2</label>-->
-              <!--<input type="file" [hidden]="true" (change)="onFile2Changed($event)" #file2>-->
-              <!--<button mat-raised-button color="primary" class="col-4" #upload (click)="file2.click()">-->
-                <!--Choose file-->
-              <!--</button>-->
-              <!--<mat-progress-bar mode="determinate" class="progress-bar mb-1" [value]="(uploadProgress2 | async)"></mat-progress-bar>-->
-            <!--</div>-->
-            <!--<p class="ml-2" *ngIf="progressCompleted2">File uploaded successfully</p>-->
-          <!--</div>-->
-        <!--</mat-step>-->
-        <!--<mat-step label="Submit">-->
-          <!--<div class="form-group">-->
-            <!--<button mat-raised-button color="primary"  (click)="submitInvestorToVerify()" [disabled]="angForm.pristine || angForm.invalid" class="primary col-2">Submit</button>-->
-          <!--</div>-->
-        <!--</mat-step>-->
-   <!---->
-    <!--</form>-->
-
-  </div>
-</div>
-
