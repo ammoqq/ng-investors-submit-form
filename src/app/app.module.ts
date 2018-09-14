@@ -57,7 +57,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
 import {TransactionListResolver} from './transaction-list/transaction-list.resolver';
 
-
 @NgModule({
   declarations: [
     AppComponent,

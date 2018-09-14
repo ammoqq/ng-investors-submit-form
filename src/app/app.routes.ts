@@ -9,12 +9,12 @@ import { CreateComponent } from './create/create.component';
 import { IndexComponent } from './index/index.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import {UserPaymentComponent} from './user-payment/user-payment.component';
-import {IndexPageComponent} from './index-page/index-page.component';
-import {AccountDetailsResolver} from './account-details/account-details.resolver';
 import { AnonymousGuard } from './core/anonymous.guard';
 import {TransactionListComponent} from './transaction-list/transaction-list.component';
 import {TransactionListService} from './transaction-list/transaction-list.service';
 import {TransactionListResolver} from './transaction-list/transaction-list.resolver';
+import {AccountDetailsResolver} from './account-details/account-details.resolver';
+import {IndexPageComponent} from './index-page/index-page.component';
 
 export const rootRouterConfig: Routes = [
   { path: '', component: IndexPageComponent  },
