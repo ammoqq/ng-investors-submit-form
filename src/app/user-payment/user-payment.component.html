@@ -31,8 +31,26 @@
       <mat-grid-list cols="2" rowHeight="250px">
         <mat-grid-tile>
           <div class="col">
-           <button  style="border: 0px; height: 50px; width: 290px; background: url('http://static.payu.com/pl/standard/partners/buttons/payu_account_button_long_03.png'); cursor: pointer;"
-            (click)="payuButton()"></button>
+
+            <!--<form #form action='https://easypaystg.easypaisa.com.pk/easypay/Index.jsf' method='post'>-->
+              <!--...-->
+              <!--<button type="submit" class="btn btn-success" (click)="form.submit()">Submit</button>-->
+              <!--...-->
+            <!--</form>-->
+            <form #form method="post" action="https://secure.payu.com/api/v2_1/orders" target="_blank">
+              <input type="hidden" name="customerIp" value="123.123.123.123">
+              <input type="hidden" name="merchantPosId" value="145227">
+              <input type="hidden" name="description" value="Order description">
+              <input type="hidden" name="totalAmount" value="1000">
+              <input type="hidden" name="currencyCode" value="PLN">
+              <input type="hidden" name="products[0].name" value="Product 1">
+              <input type="hidden" name="products[0].unitPrice" value="1000">
+              <input type="hidden" name="products[0].quantity" value="1">
+              <input type="hidden" name="notifyUrl" value="http://shop.url/notify">
+              <input type="hidden" name="continueUrl" value="http://www.payu.pl">
+              <input type="hidden" name="OpenPayu-Signature" value="sender=145227;algorithm=SHA-256;signature=d1c35a13e4abb71d9a7fd20298e27eb2e50f9993763c1a95c46d1e296789a942">
+              <button type="submit" style="border: 0px; height: 100px; width: 184px; background: url(../../assets/payuButtonX.png) no-repeat; cursor: pointer;" (click)="form.submit()"></button>
+            </form>
           </div>
         </mat-grid-tile>
         <mat-grid-tile>

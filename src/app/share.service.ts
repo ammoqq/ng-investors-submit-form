@@ -20,10 +20,9 @@ export class ShareService {
       if (err) {
         message = err.message;
       } else {
-        this.router.navigate(['/index/status']).then(() => {
+        this.router.navigate(['/index/account-details']).then(() => {
 
         });
-        console.log('Success');
       }
 
       this.matSnackBar.open(message, "", {

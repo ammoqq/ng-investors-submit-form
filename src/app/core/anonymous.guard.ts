@@ -18,8 +18,12 @@ export class AnonymousGuard implements CanActivate {
     return new Promise((resolve, reject) => {
       this.userService.getCurrentUser()
       .then(user => {
-        this.router.navigate(['/index']);
-        return resolve(false)
+        if (user && user.emailVerified === true) {
+          this.router.navigate(['/index']);
+          return resolve(false);
+        } else {
+          return resolve(true);
+        }
       }, err => {
         return resolve(true);
       });
