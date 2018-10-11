@@ -59,7 +59,7 @@ export class RegisterComponent {
      .then(res => {
        console.log(res);
        this.errorMessage = "";
-       this.successMessage = "Your account has been created";
+       this.successMessage = "Account created, check your email";
      }, err => {
        console.log(err);
        this.errorMessage = err.message;
