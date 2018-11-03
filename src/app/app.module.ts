@@ -36,6 +36,7 @@ import {
   MatDialogModule,
   MatRadioModule,
   MatTabsModule,
+  MatSidenavModule,
   MatTableModule
 
 } from '@angular/material';
@@ -87,6 +88,7 @@ import {TransactionListResolver} from './transaction-list/transaction-list.resol
     MatGridListModule,
     MatStepperModule,
     MatExpansionModule,
+    MatSidenavModule,
     MatButtonModule,
     MatCardModule,
     MatTabsModule,

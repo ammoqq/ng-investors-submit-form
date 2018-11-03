@@ -1,15 +1,25 @@
-<mat-toolbar color="primary">
-  <span>
-  <button mat-button routerLink="transactionList">Transaction List</button>
-    <button mat-button routerLink="userPayment">Send Coins</button>
-  <!-- <button mat-button routerLink="status">Status</button> -->
-  <button mat-button routerLink="create">KYC/AML Form</button>
-  <button mat-button routerLink="account-details">Account details</button>
-    <!-- This fills the remaining space of the current row -->
-  </span>
-  <span class="spacer"></span>
-  <button mat-button (click)="logout()">Logout</button>
-</mat-toolbar>
-<div class="container">
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" opened class="app-navbar">
+    <p>
+    <button mat-button routerLink="transactionList" >Transaction List</button>
+    </p>
+    <p>
+      <button mat-button routerLink="userPayment">Send Coins</button>
+    </p>
+    <!-- <button mat-button routerLink="status">Status</button> -->
+    <p>
+    <button mat-button routerLink="create">KYC/AML Form</button>
+    </p>
+    <p>
+    <button mat-button routerLink="account-details">Account details</button>
+    </p>
+    <p>
+    <button mat-button (click)="logout()">Logout</button>
+    </p>
+  </mat-sidenav>
+  
+<mat-sidenav-content class="container">
   <router-outlet></router-outlet>
-</div>
+</mat-sidenav-content>
+</mat-sidenav-container>
+
