@@ -1,8 +1,6 @@
 @import '~@angular/material/theming';
 
-mat-sidenav-container {
-	min-height: 300px;
-}
-mat-sidenav {
-	background-color: #673ab7;
+.mat-sidenav-container{
+	min-height: 90vh;
+    display: block;
 }
