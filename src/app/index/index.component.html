@@ -10,10 +10,10 @@
 <mat-sidenav-container >
   <mat-sidenav #drawer mode="side" opened role="navigation">
     <mat-nav-list>
+      <a mat-list-item routerLink='account-details'>Account details</a>
       <a mat-list-item routerLink='transactionList'>Transaction List</a>
       <a mat-list-item routerLink='userPayment'>Send coins</a>
       <a mat-list-item routerLink='create'>KYC/AML Form</a>
-      <a mat-list-item routerLink='account-details'>Account details</a>
       <a mat-list-item (click)="logout()">Logout</a>
 
     </mat-nav-list>

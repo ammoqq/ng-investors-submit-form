@@ -1,6 +1,12 @@
 @import '~@angular/material/theming';
 
 .mat-sidenav-container{
-	min-height: 90vh;
+	min-height: 92vh;
     display: block;
+    background-color: white;
+
+}
+.mat-sidenav {
+	    border-right: 1px solid rgba(0,0,0,.12);
+
 }
