@@ -6,7 +6,7 @@ import { rootRouterConfig } from './app.routes';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
-import {AngularFireAuth, AngularFireAuthModule} from 'angularfire2/auth';
+import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
 import { StatusComponent } from './status/status.component';
@@ -17,7 +17,7 @@ import { AuthService } from './core/auth.service';
 import { UserService } from './core/user.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 
 // import { AngularFireStorage } from 'angularfire2/storage';
@@ -46,18 +46,18 @@ import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
 import { CreateComponent } from './create/create.component';
 import { ShareService } from './share.service';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccountDetailsComponent } from './account-details/account-details.component';
-import {UserPaymentComponent} from './user-payment/user-payment.component';
+import { UserPaymentComponent } from './user-payment/user-payment.component';
 import { IndexPageComponent } from './index-page/index-page.component';
-import {ResetPwComponent} from './reset-pw/reset-pw.component';
-import {ResendComponent} from './resend/resend.component';
-import {AccountDetailsResolver} from './account-details/account-details.resolver';
+import { ResetPwComponent } from './reset-pw/reset-pw.component';
+import { ResendComponent } from './resend/resend.component';
+import { AccountDetailsResolver } from './account-details/account-details.resolver';
 import { AnonymousGuard } from './core/anonymous.guard';
 import { PayuService } from './user-payment/payu.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
-import {TransactionListResolver} from './transaction-list/transaction-list.resolver';
+import { TransactionListResolver } from './transaction-list/transaction-list.resolver';
 
 @NgModule({
   declarations: [

@@ -6,50 +6,50 @@ import * as firebase from 'firebase/app';
 export class AuthService {
 
   constructor(
-   private afAuth: AngularFireAuth
- ){}
+    private afAuth: AngularFireAuth
+  ) { }
 
-  doFacebookLogin(){
+  doFacebookLogin() {
     return new Promise<any>((resolve, reject) => {
       let provider = new firebase.auth.FacebookAuthProvider();
       this.afAuth.auth
-      .signInWithPopup(provider)
-      .then(res => {
-        resolve(res);
-      }, err => {
-        console.log(err);
-        reject(err);
-      })
+        .signInWithPopup(provider)
+        .then(res => {
+          resolve(res);
+        }, err => {
+          console.log(err);
+          reject(err);
+        })
     })
   }
 
-  doTwitterLogin(){
+  doTwitterLogin() {
     return new Promise<any>((resolve, reject) => {
       let provider = new firebase.auth.TwitterAuthProvider();
       this.afAuth.auth
-      .signInWithPopup(provider)
-      .then(res => {
-        resolve(res);
-      }, err => {
-        console.log(err);
-        reject(err);
-      })
+        .signInWithPopup(provider)
+        .then(res => {
+          resolve(res);
+        }, err => {
+          console.log(err);
+          reject(err);
+        })
     })
   }
 
-  doGoogleLogin(){
+  doGoogleLogin() {
     return new Promise<any>((resolve, reject) => {
       let provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope('profile');
       provider.addScope('email');
       this.afAuth.auth
-      .signInWithPopup(provider)
-      .then(res => {
-        resolve(res);
-      }, err => {
-        console.log(err);
-        reject(err);
-      })
+        .signInWithPopup(provider)
+        .then(res => {
+          resolve(res);
+        }, err => {
+          console.log(err);
+          reject(err);
+        })
     })
   }
 
@@ -74,42 +74,36 @@ export class AuthService {
         reject(error);
         console.log(errorCode, errorMessage);
       });
-
-
-
-
-    //     .then(function(user) {
-    //       console.log('111');
-    //       console.log(user);
-    //       console.log(user.emailVerified);
-    //       if (user && user.emailVerified !== true) {
-    //         console.log('222');
-    //         user.sendEmailVerification();
-    //       }
-    //       resolve(user);
-    //     }, err => reject(err));
-     });
+    });
   }
 
-  doLogin(credentials){
+  doLogin(credentials) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
-      .then(res => {
-        resolve(res);
-      }, err => reject(err))
+        .then(res => {
+          resolve(res);
+        }, err => reject(err))
     })
   }
 
-  doLogout(){
+  doLogout() {
     return new Promise((resolve, reject) => {
-      if(firebase.auth().currentUser){
+      if (firebase.auth().currentUser) {
         this.afAuth.auth.signOut()
         resolve();
       }
-      else{
+      else {
         reject();
       }
     });
+  }
+
+  resetPassword(email: string) {
+    var auth = firebase.auth();
+
+    return auth.sendPasswordResetEmail(email)
+      .then(() => console.log("email sent"))
+      .catch((error) => console.log(error))
   }
 
 
