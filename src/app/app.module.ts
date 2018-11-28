@@ -58,6 +58,7 @@ import { PayuService } from './user-payment/payu.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
 import { TransactionListResolver } from './transaction-list/transaction-list.resolver';
+import { ImageDialogComponent} from './shared/image-dialog/image-dialog.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { TransactionListResolver } from './transaction-list/transaction-list.res
     IndexPageComponent,
     ResetPwComponent,
     ResendComponent,
-    TransactionListComponent
+    TransactionListComponent,
+    ImageDialogComponent
   ],
   imports: [
     FormsModule,
@@ -106,6 +108,7 @@ import { TransactionListResolver } from './transaction-list/transaction-list.res
     AngularFireModule.initializeApp(environment.firebase),
     HttpClientModule
   ],
+  entryComponents: [ImageDialogComponent],
   providers: [AuthService, UserService, StatusResolver, AuthGuard, ShareService, AccountDetailsResolver, AnonymousGuard, PayuService, TransactionListResolver],
   bootstrap: [AppComponent]
 })

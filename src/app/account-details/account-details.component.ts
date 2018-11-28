@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { AccountDetailsModel } from './account-details.model';
 import { AuthService } from '../core/auth.service';
+import { ImageDialogComponent} from '../shared/image-dialog/image-dialog.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-account-details',
@@ -23,7 +25,8 @@ export class AccountDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private db: AngularFireDatabase,
     private storage: AngularFireStorage,
-    public authService: AuthService
+    public authService: AuthService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -51,6 +54,13 @@ export class AccountDetailsComponent implements OnInit {
   resetPassword() {
     this.authService.resetPassword(this.email);
     this.passReset = true;
+  }
+
+  openDialog(name: string): void {
+    const dialogRef = this.dialog.open(ImageDialogComponent, {
+      width: '500px',
+      data : {image: name}
+    });
   }
 
 }

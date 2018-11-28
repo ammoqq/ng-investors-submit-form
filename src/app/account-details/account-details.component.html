@@ -2,6 +2,7 @@
   <div class="row mt-5">
       <button mat-button color="primary" (click)="resetPassword()" *ngIf="!passReset"> Reset password</button>
       <p *ngIf="passReset"> Mail with password reset is send</p>
+
   </div>
   <div class="row mt-5">
     <page-user></page-user>
@@ -33,27 +34,11 @@
       </ul>
     </div>
   </div>
-  <div class="row mt-5">
+  <div class="row mt-5 mb-5">
     <div class="col-6">
-      <mat-card>
-        <mat-card-title>
-          Front image
-        </mat-card-title>
-        <mat-card-content>
-          <img src="{{imageFront}}" class="img-fluid">
-        </mat-card-content>
-      </mat-card>
+          <button mat-raised-button (click)="openDialog(imageFront)">Front image</button>
+          <button mat-raised-button (click)="openDialog(imageBack)">Back image</button>
 
-    </div>
-    <div class="col-6">
-      <mat-card>
-        <mat-card-title>
-          Back image
-        </mat-card-title>
-        <mat-card-content>
-          <img src="{{imageBack}}" class="img-fluid">
-        </mat-card-content>
-      </mat-card>
     </div>
   </div>
 </div>
